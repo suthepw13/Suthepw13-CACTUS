@@ -7,31 +7,6 @@
 <title>SUTHEPW13 Cactus Gallery</title>
 
 <style>
-.gallery {
-    counter-reset: photo-counter;
-}
-
-.gallery a {
-    position: relative;
-    display: inline-block;
-    counter-increment: photo-counter;
-}
-
-.gallery a::after {
-    content: counter(photo-counter);
-    position: absolute;
-    left: 5px;
-    bottom: 5px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 2px 6px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-body{
-<style>
 body{
     font-family: Arial, sans-serif;
     background:#f5f5f5;
@@ -43,6 +18,57 @@ h1{
     text-align:center;
 }
 
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    counter-reset: photo-counter;
+}
+
+.gallery a{
+    position:relative;
+    display:inline-block;
+    counter-increment: photo-counter;
+}
+
+.gallery a::after{
+    content: counter(photo-counter);
+    position:absolute;
+    left:5px;
+    bottom:5px;
+    background:rgba(0,0,0,0.7);
+    color:white;
+    padding:2px 6px;
+    border-radius:5px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.back{
+    display:block;
+    width:200px;
+    margin:30px auto;
+    text-align:center;
+    padding:12px;
+    background:#4CAF50;
+    color:white;
+    text-decoration:none;
+    border-radius:12px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌵 SUTHEPW13 Cactus Gallery</h1>
+
+<div class="gallery">
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
