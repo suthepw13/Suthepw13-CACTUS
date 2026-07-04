@@ -4,7 +4,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SUTHEPW13 Cactus Gallery</title>
+.gallery {
+    counter-reset: photo-counter;
+}
 
+.gallery a {
+    position: relative;
+    display: inline-block;
+    counter-increment: photo-counter;
+}
+
+.gallery a::after {
+    content: counter(photo-counter);
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
 <style>
 body{
     font-family: Arial, sans-serif;
