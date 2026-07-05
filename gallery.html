@@ -22,7 +22,6 @@ h1{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
     gap:15px;
-    counter-reset: photo-counter;
 }
 
 .gallery a{
@@ -33,10 +32,12 @@ h1{
     transition: transform 0.2s;
     background:#ffffff;
     aspect-ratio: 4/3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.gallery a::after{
-    content: counter(photo-counter);
+.gallery .num{
     position:absolute;
     left:8px;
     bottom:8px;
@@ -50,9 +51,10 @@ h1{
 }
 
 .gallery img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
     display:block;
 }
 
@@ -85,7 +87,6 @@ h1{
 <a class="back" href="index.html">กลับหน้าแรก</a>
 
 <script>
-// === รวมรูปทั้งหมด 539 รูป ครบถ้วน ไม่ซ้ำ ไม่หาย ===
 const photos = [
 "20260629_212824_4875.jpg",
 "20260629_212828_8905.jpg",
@@ -401,16 +402,19 @@ const photos = [
 "IMG_20251203_133057.jpg"
 ];
 
-// สร้างแกลเลอรี่อัตโนมัติ
 const gallery = document.getElementById('gallery');
-photos.forEach(photo => {
+photos.forEach((photo, index) => {
     const link = document.createElement('a');
     link.href = photo;
     link.target = "_blank";
     const img = document.createElement('img');
     img.src = photo;
     img.loading = "lazy";
+    const num = document.createElement('div');
+    num.className = "num";
+    num.textContent = index + 1; // เริ่มนับที่ 1 แน่นอน
     link.appendChild(img);
+    link.appendChild(num);
     gallery.appendChild(link);
 });
 </script>
