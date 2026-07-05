@@ -15,11 +15,10 @@ h1 { text-align: center; margin-bottom: 30px; color: #2d2d2d; }
 .gallery img { width: 100%; height: auto; display: block; transition: 0.2s; }
 .gallery .item:hover img { transform: scale(1.05); }
 
-/* ส่วนขยายรูปเต็มจอ */
-.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999; padding: 20px; align-items: center; justify-content: center; }
+.lightbox { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 9999; padding: 20px; align-items: center; justify-content: center; }
 .lightbox.show { display: flex; }
-.lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; object-fit: contain; }
-.lightbox .close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
+.lightbox img { max-width: 90%; max-height: 85vh; border-radius: 8px; object-fit: contain; }
+.lightbox .close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 42px; font-weight: bold; cursor: pointer; user-select: none; }
 
 .back { display: block; width: 200px; margin: 40px auto 20px; text-align: center; padding: 12px; background: #4CAF50; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; }
 .back:hover { background: #45a049; }
@@ -30,7 +29,6 @@ h1 { text-align: center; margin-bottom: 30px; color: #2d2d2d; }
 <h1>🌵 SUTHEPW13 Cactus Gallery</h1>
 <div class="gallery" id="gallery"></div>
 
-<!-- กล่องขยายรูป -->
 <div class="lightbox" id="lightbox">
     <span class="close">&times;</span>
     <img id="lightboxImg" src="" alt="รูปขยาย">
@@ -358,7 +356,6 @@ const gallery = document.getElementById('gallery');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 
-// สร้างรายการรูป
 photos.forEach((photo, index) => {
     const item = document.createElement('div');
     item.className = 'item';
@@ -369,10 +366,9 @@ photos.forEach((photo, index) => {
     
     const img = document.createElement('img');
     img.src = photo;
-    img.loading = "lazy";
-    img.alt = "รูปที่ " + (index + 1);
+    img.loading = 'lazy';
+    img.alt = 'รูปที่ ' + (index + 1);
     
-    // กดรูปเพื่อขยาย
     item.onclick = () => {
         lightboxImg.src = photo;
         lightbox.classList.add('show');
@@ -384,20 +380,19 @@ photos.forEach((photo, index) => {
     gallery.appendChild(item);
 });
 
-// ปิดรูปขยาย
-document.querySelector('.close').onclick = closeLightbox;
-lightbox.onclick = (e) => {
-    if (e.target === lightbox) closeLightbox();
-};
-document.onkeydown = (e) => {
-    if (e.key === "Escape") closeLightbox();
+const closeLightboxFunc = () => {
+    lightbox.classList.remove('show');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
 };
 
-function closeLightbox() {
-    lightbox.classList.remove('show');
-    document.body.style.overflow = 'auto';
-    lightboxImg.src = "";
-}
+document.querySelector('.close').onclick = closeLightboxFunc;
+lightbox.onclick = (e) => {
+    if (e.target === lightbox) closeLightboxFunc();
+};
+document.onkeydown = (e) => {
+    if (e.key === 'Escape') closeLightboxFunc();
+};
 </script>
 </body>
 </html>
