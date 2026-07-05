@@ -6,76 +6,74 @@
 <title>SUTHEPW13 Cactus Gallery</title>
 
 <style>
-* { box-sizing: border-box; margin:0; padding:0; }
-body{
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
     font-family: Arial, sans-serif;
-    background:#f5f5f5;
-    padding:20px 10px;
+    background: #f5f5f5;
+    padding: 20px 10px;
 }
 
-h1{
-    text-align:center;
-    margin-bottom:30px;
-    color:#2d2d2d;
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2d2d2d;
 }
 
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-    gap:15px;
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
 }
 
-.gallery a{
-    position:relative;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,0.15);
-    background:#ffffff;
-    width:100%;
-    min-height:150px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.gallery .item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
 }
 
-.gallery .num{
-    position:absolute;
-    left:8px;
-    bottom:8px;
-    background:rgba(0,0,0,0.75);
-    color:#fff;
-    padding:4px 10px;
-    border-radius:6px;
-    font-size:15px;
-    font-weight:bold;
-    z-index:999;
+.gallery .num {
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    width: fit-content;
+    margin: 0 auto;
 }
 
-.gallery img{
-    width:100%;
-    height:auto;
-    max-height:320px;
-    display:block;
-    object-fit:contain;
+.gallery a {
+    display: block;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    background: #fff;
 }
 
-.gallery a:hover{
-    transform:scale(1.03);
+.gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.back{
-    display:block;
-    width:200px;
-    margin:40px auto 20px;
-    text-align:center;
-    padding:12px;
-    background:#4CAF50;
-    color:white;
-    text-decoration:none;
-    border-radius:12px;
-    font-weight:bold;
+.gallery a:hover {
+    transform: scale(1.03);
 }
-.back:hover{ background:#45a049; }
+
+.back {
+    display: block;
+    width: 200px;
+    margin: 40px auto 20px;
+    text-align: center;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+}
+.back:hover { background: #45a049; }
 </style>
 </head>
 <body>
@@ -85,7 +83,6 @@ h1{
 <a class="back" href="index.html">กลับหน้าแรก</a>
 
 <script>
-// === รวมรูปทั้งหมด 539 รูป ครบถ้วน ===
 const photos = [
 "20260629_212824_4875.jpg",
 "20260629_212828_8905.jpg",
@@ -401,23 +398,28 @@ const photos = [
 "IMG_20251203_133057.jpg"
 ];
 
-// สร้างแกลเลอรี่ เริ่มนับที่ 1 แน่นอน
 const gallery = document.getElementById('gallery');
 photos.forEach((photo, index) => {
+    const item = document.createElement('div');
+    item.className = 'item';
+    
+    const num = document.createElement('div');
+    num.className = 'num';
+    num.textContent = index + 1;
+    
     const link = document.createElement('a');
     link.href = photo;
     link.target = "_blank";
+    
     const img = document.createElement('img');
     img.src = photo;
     img.loading = "lazy";
-    const num = document.createElement('div');
-    num.className = "num";
-    num.textContent = index + 1;
+    
     link.appendChild(img);
-    link.appendChild(num);
-    gallery.appendChild(link);
+    item.appendChild(num);
+    item.appendChild(link);
+    gallery.appendChild(item);
 });
 </script>
 </body>
 </html>
-
