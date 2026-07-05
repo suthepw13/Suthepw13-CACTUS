@@ -27,10 +27,6 @@ h1{
 
 .gallery a{
     position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    counter-increment: photo-counter;
     border-radius:15px;
     overflow:hidden;
     box-shadow:0 2px 8px rgba(0,0,0,0.15);
@@ -54,12 +50,10 @@ h1{
 }
 
 .gallery img{
-    max-width:100%;
-    max-height:100%;
-    width:auto;
-    height:auto;
-    display:block;
+    width:100%;
+    height:100%;
     object-fit:contain;
+    display:block;
 }
 
 .gallery a:hover{
@@ -91,9 +85,8 @@ h1{
 <a class="back" href="index.html">กลับหน้าแรก</a>
 
 <script>
-// === รวมรูปทั้งหมด 539 รูป จัดลำดับสวยงาม ครบถ้วน ไม่ซ้ำ ไม่หาย ===
+// === รวมรูปทั้งหมด 539 รูป ครบถ้วน ไม่ซ้ำ ไม่หาย ===
 const photos = [
-// ===== ชุดหลัก เรียงตามเวลา + จัดสีให้สวยงาม =====
 "20260629_212824_4875.jpg",
 "20260629_212828_8905.jpg",
 "20260629_212832_2584.jpg",
