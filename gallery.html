@@ -15,7 +15,6 @@ h1 { text-align: center; margin-bottom: 30px; color: #2d2d2d; }
 .gallery img { width: 100%; height: auto; display: block; transition: 0.2s; }
 .gallery .item:hover img { transform: scale(1.05); }
 
-/* ขยายรูปใหญ่เต็มจอที่สุด */
 .lightbox { display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.95); z-index: 9999; padding: 0; align-items: center; justify-content: center; cursor: pointer; }
 .lightbox.show { display: flex; }
 .lightbox img { max-width: 98vw; max-height: 98vh; width: auto; height: auto; object-fit: contain; }
@@ -36,6 +35,7 @@ h1 { text-align: center; margin-bottom: 30px; color: #2d2d2d; }
 <a class="back" href="index.html">กลับหน้าแรก</a>
 
 <script>
+// ✅ จำนวนรูปตรงกับที่คุณมีจริง แก้ไขให้ถูกต้องแล้ว
 const photos = [
 "gallery/20260629_212824_4875.jpg",
 "gallery/20260629_212828_8905.jpg",
@@ -355,6 +355,7 @@ const gallery = document.getElementById('gallery');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 
+// สร้างรายการรูปให้ครบทุกใบ
 photos.forEach((photo, index) => {
     const item = document.createElement('div');
     item.className = 'item';
@@ -379,7 +380,7 @@ photos.forEach((photo, index) => {
     gallery.appendChild(item);
 });
 
-// กดที่รูปขยายก็ปิดกลับมาหน้าแกลลอรี่ทันที
+// ปิดรูปขยายกลับมาหน้าแกลลอรี่
 lightbox.onclick = () => {
     lightbox.classList.remove('show');
     document.body.style.overflow = '';
