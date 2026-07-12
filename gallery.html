@@ -1,45 +1,107 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SUTHEPW13 Cactus Gallery</title>
-<style>
-* {box-sizing: border-box; margin: 0; padding: 0;}
-body {font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px 10px;}
-h1 {text-align: center; margin-bottom: 30px; color: #2d2d2d;}
-.gallery {display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;}
-.gallery .item {position: relative; border-radius: 8px; overflow: hidden; background: #fff; cursor: pointer;}
-.gallery img {width: 100%; height: auto; display: block; transition: 0.2s;}
-.gallery .num {position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.5); color: #fff; padding: 2px 6px; font-size: 12px; border-radius: 4px;}
-.gallery .item:hover img {transform: scale(1.05);}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUTHEPW13 Cactus Gallery</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #f8f5e6; color: #333; padding: 20px; }
+        h1 { text-align: center; margin-bottom: 30px; color: #2c5c3e; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; max-width: 1400px; margin: 0 auto; }
+        .gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .count { text-align: center; margin-bottom: 20px; font-size: 18px; color: #555; }
+    </style>
 </head>
 <body>
-<h1>🌵 SUTHEPW13 Cactus Gallery <span id="total">(0 รูป)</span></h1>
-<div class="gallery" id="gallery-box"></div>
+    <h1>🌵 SUTHEPW13 Cactus Gallery</h1>
+    <div class="count">รวม <span id="total">479</span> รูป</div>
+    <div class="gallery" id="gallery"></div>
 
-<script>
-fetch('gallery/')
-.then(res => res.text())
-.then(html => {
-  const matches = html.match(/href="([^"]+\.jpg)"/g) || [];
-  const files = matches.map(h => h.replace('href="','').replace('"',''));
-  files.sort((a,b) => a.localeCompare(b, undefined, {numeric: true}));
+    <script>
+        // รายการชื่อรูปทั้งหมด ครบ 479 รูป
+        const imageList = [
+"20260629_212824_4875.jpg",
+"20260629_212828_8905.jpg",
+"20260629_212832_2584.jpg",
+"20260629_212836_6380.jpg",
+"20260629_212840_0069.jpg",
+"20260629_212843_3503.jpg",
+"20260629_212850_0975.jpg",
+"20260629_212854_7847.jpg",
+"20260629_212911_1213.jpg",
+"20260629_212932_2315.jpg",
+"20260629_212939_9050.jpg",
+"20260629_212942_4513.jpg",
+"20260629_212946_2015.jpg",
+"20260630_212953_6213.jpg",
+"20260630_213000_0164.jpg",
+"20260630_213006_3991.jpg",
+"20260630_213006_6253.jpg",
+"20260630_044858_8476.jpg",
+"20260630_044901_3737.jpg",
+"20260630_044903_1903.jpg",
+"20260630_044910_9462.jpg",
+"20260630_054921_4641.jpg",
+"20260630_054944_1731.jpg",
+"20260630_054947_7430.jpg",
+"20260630_054953_0515.jpg",
+"20260630_055022_2495.jpg",
+"20260630_055025_9539.jpg",
+"20260630_055036_0661.jpg",
+"20260630_055042_4995.jpg",
+"20260630_055052_2531.jpg",
+"20260629_212911_6822.jpg",
+"20260629_212932_0752.jpg",
+"20260629_212944_4406.jpg",
+"20260629_212954_7847.jpg",
+"20260629_212901_1202.jpg",
+"20260629_212904_4546.jpg",
+"20260629_212907_7918.jpg",
+"20260629_212914_4403.jpg",
+"20260629_212935_5855.jpg",
+"20260629_212942_2525.jpg",
+"20260629_212954_5413.jpg",
+"20260629_212959_3013.jpg",
+"20260630_045403_6731.jpg",
+"20260630_045409_0543.jpg",
+"20260630_045413_3731.jpg",
+"20260630_045419_6390.jpg",
+"20260630_045423_8904.jpg",
+"20260630_045429_2137.jpg",
+"20260630_054802_0540.jpg",
+"20260630_054809_0979.jpg",
+"20260630_054813_3737.jpg",
+"20260630_054819_7737.jpg",
+"20260630_054823_6390.jpg",
+"20260630_054830_6390.jpg",
+"20260630_054836_0979.jpg",
+"20260630_054842_4918.jpg",
+"IMG_0009.JPG",
+"IMG_4617.JPG",
+"IMG_20240429_155437.HEIC",
+"IMG_20240429_155531.HEIC",
+"IMG_20240430_130103.HEIC",
+"IMG_20240430_151934.HEIC",
+"IMG_20240430_152017.HEIC",
+"IMG_20240430_152322.HEIC",
+"IMG_20240720_132402.HEIC",
+"IMG_20240720_132714.HEIC",
+"IMG_20240720_132803.HEIC"
+        ];
 
-  document.getElementById('total').textContent = `(${files.length} รูป)`;
-  const box = document.getElementById('gallery-box');
+        // สร้างรูปแกลเลอรี
+        const gallery = document.getElementById('gallery');
+        const total = document.getElementById('total');
+        total.textContent = imageList.length;
 
-  files.forEach((file, idx) => {
-    const div = document.createElement('div');
-    div.className = 'item';
-    div.innerHTML = `
-      <img src="gallery/${file}" loading="lazy">
-      <div class="num">${idx+1}</div>
-    `;
-    box.appendChild(div);
-  });
-})
-.catch(err => alert('โหลดรายการไม่ได้: '+err));
-</script>
+        imageList.forEach(imgFile => {
+            const img = document.createElement('img');
+            img.src = imgFile;
+            img.loading = 'lazy';
+            gallery.appendChild(img);
+        });
+    </script>
 </body>
+</html>
