@@ -54,45 +54,20 @@ const photos = [
 const gallery = document.getElementById('gallery');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
+// แสดงแค่ชื่อไฟล์ ไม่แสดงรูปภาพ
+gallery.innerHTML = '';
 
-// สร้างรายการรูปให้ครบทุกใบ
-photos.forEach((photo, index) => {
-    const item = document.createElement('div');
-    item.className = 'item';
-    
-    const num = document.createElement('div');
-    num.className = 'num';
-    num.textContent = index + 1;
-    
-    const img = document.createElement('img');
-    img.src = photo;
-    img.loading = 'lazy';
-    img.alt = 'รูปที่ ' + (index + 1);
-    
-    item.onclick = () => {
-        lightboxImg.src = photo;
-        lightbox.classList.add('show');
-        document.body.style.overflow = 'hidden';
-    };
-    
-    item.appendChild(num);
-    item.appendChild(img);
-    gallery.appendChild(item);
+photos.forEach((fileName, index) => {
+  const displayName = fileName.replace('gallery/', '');
+  
+  const nameItem = document.createElement('div');
+  nameItem.style = "padding:6px; margin:3px 0; font-size:14px; border-bottom:1px solid #eee;";
+  nameItem.textContent = `${index+1}. ${displayName}`;
+  
+  gallery.appendChild(nameItem);
 });
+// สร้างรายการรูปให้ครบทุกใบ
 
-// ปิดรูปขยายกลับมาหน้าแกลลอรี่
-lightbox.onclick = () => {
-    lightbox.classList.remove('show');
-    document.body.style.overflow = '';
-    lightboxImg.src = '';
-};
-document.onkeydown = (e) => {
-    if (e.key === 'Escape') {
-        lightbox.classList.remove('show');
-        document.body.style.overflow = '';
-        lightboxImg.src = '';
-    }
-};
 </script>
 </body>
 </html>
