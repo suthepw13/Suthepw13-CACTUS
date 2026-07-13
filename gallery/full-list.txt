@@ -1,43 +1,5 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SUTHEPW13 Cactus Gallery</title>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px 10px; }
-h1 { text-align: center; margin-bottom: 30px; color: #2d2d2d; }
-
-.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-.gallery .item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); background: #fff; cursor: pointer; }
-.gallery .num { position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.75); color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 14px; font-weight: bold; z-index: 10; }
-.gallery img { width: 100%; height: auto; display: block; transition: 0.2s; }
-.gallery .item:hover img { transform: scale(1.05); }
-
-.lightbox { display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.95); z-index: 9999; padding: 0; align-items: center; justify-content: center; cursor: pointer; }
-.lightbox.show { display: flex; }
-.lightbox img { max-width: 98vw; max-height: 98vh; width: auto; height: auto; object-fit: contain; }
-
-.back { display: block; width: 200px; margin: 40px auto 20px; text-align: center; padding: 12px; background: #4CAF50; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; }
-.back:hover { background: #45a049; }
-</style>
-</head>
-<body>
-
-<h1>🌵 SUTHEPW13 Cactus Gallery</h1>
-<div class="gallery" id="gallery"></div>
-
-<div class="lightbox" id="lightbox">
-    <img id="lightboxImg" src="" alt="รูปขยาย">
-</div>
-
-<a class="back" href="index.html">กลับหน้าแรก</a>
-
-<script>
-// ✅ จำนวนรูปตรงกับที่คุณมีจริง แก้ไขให้ถูกต้องแล้ว
-const photos = [
- 'gallery/1740638531687.jpg',
+﻿'gallery/.gitkeep',
+'gallery/1740638531687.jpg',
 'gallery/1740638531829.jpg',
 'gallery/1740638531869.jpg',
 'gallery/1740638531906.jpg',
@@ -358,6 +320,7 @@ const photos = [
 'gallery/20260702_194258_8110.jpg',
 'gallery/20260702_194301_1230.jpg',
 'gallery/20260702_194304_4214.jpg',
+'gallery/full-list.txt',
 'gallery/IMG_0009.JPG',
 'gallery/IMG_20240429_155437.HEIC',
 'gallery/IMG_20240429_155531.HEIC',
@@ -514,27 +477,5 @@ const photos = [
 'gallery/IMG_20251023_122618.jpg',
 'gallery/IMG_20251023_122713.jpg',
 'gallery/IMG_20251203_133057.jpg',
-'gallery/IMG_4617.JPG'
-];
-
-const gallery = document.getElementById('gallery');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-// แสดงแค่ชื่อไฟล์ ไม่แสดงรูปภาพ
-gallery.innerHTML = '';
-
-photos.forEach((fileName, index) => {
-  const displayName = fileName.replace('gallery/', '');
-  
-  const nameItem = document.createElement('div');
-  nameItem.style = "padding:6px; margin:3px 0; font-size:14px; border-bottom:1px solid #eee;";
-  nameItem.textContent = `${index+1}. ${displayName}`;
-  
-  gallery.appendChild(nameItem);
-});
-// สร้างรายการรูปให้ครบทุกใบ
-
-</script>
-</body>
-</html>
-อัปเดทวันที่ 13 ก.ค.
+'gallery/IMG_4617.JPG',
+'gallery/test.txt',
