@@ -525,7 +525,7 @@ gallery.innerHTML = '';
 
 photos.forEach((photo, index) => {
   const card = document.createElement('div');
-  card.style = "display:inline-block; margin:8px; border-radius:8px; overflow:hidden; width:220px; text-align:center; border:1px solid #ddd;";
+  card.style = "display:inline-block; margin:8px; border-radius:8px; overflow:hidden; width:220px; border:1px solid #ddd; vertical-align:top; position:relative;";
 
   const img = document.createElement('img');
   img.src = photo;
@@ -533,8 +533,8 @@ photos.forEach((photo, index) => {
   img.loading = "lazy";
 
   const num = document.createElement('div');
-  num.style = "padding:5px; background:#f5f5f5; font-size:13px;";
-  num.textContent = `รูปที่ ${index+1}`;
+  num.style = "position:absolute; top:8px; left:8px; padding:4px 8px; background:rgba(0,0,0,0.6); color:#fff; font-size:14px; border-radius:4px;";
+  num.textContent = `${index+1}`;
 
   card.appendChild(img);
   card.appendChild(num);
