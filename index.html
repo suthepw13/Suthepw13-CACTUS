@@ -4,75 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Suthep W13 Cactus</title>
-    <link rel="icon" type="image/png" href="file_0000000089487206b222bad9c842a692.png">
+<link rel="icon" type="image/png" href="file_0000000089487206b222bad9c842a692.png">
 
 <style>
-body{
+body {
     font-family: Arial, sans-serif;
-    background:#f3f7f3;
-    margin:0;
-    padding:20px;
-    text-align:center;
-    .calendar-card{
-    border:4px solid #4CAF50;
-    border-radius:25px;
-    padding:20px;
-    background:#f8fff8;
+    background: #f3f7f3;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
 }
 
-.full-width{
+h1 {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 26px;
+}
+
+.container {
+    display: grid;
+    /* ใช้ระบบ 6 คอลัมน์ เพื่อให้แบ่ง 3 และ 2 ได้ลงตัว */
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* แถวบน: หนังสือ 3 เล่ม (แบ่งคนละ 2 จาก 6 ช่อง) */
+.book-card {
     grid-column: span 2;
 }
+
+/* แถวล่าง: แกลเลอรี่และปฏิทิน (แบ่งคนละ 3 จาก 6 ช่อง) */
+.bottom-card {
+    grid-column: span 3;
 }
 
-.container{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    max-width:900px;
-    
-    margin:auto;
-}
-}
-
-.card{
-    background:white;
-    border-radius:20px;
-.card img{
-    width:100%;
-    border-radius:15px;
-}
-    
-    padding:15px;
-    margin-bottom:25px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+.card img {
+    width: 100%;
+    max-height: 200px; /* จำกัดความสูงรูปเพื่อประหยัดพื้นที่แนวตั้ง */
+    object-fit: contain; /* ป้องกันไม่ให้รูปภาพบิดเบี้ยว */
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
 }
 
-.card img{
-    width:100%;
-    border-radius:15px;
-    display:block;
+.calendar-card {
+    border: 4px solid #4CAF50;
+    border-radius: 25px;
+    background: #f8fff8;
 }
 
-h3{
-    margin:15px 0;
+h3 {
+    margin: 10px 0;
+    font-size: 16px;
 }
 
-.button{
-    display:inline-block;
-    padding:12px 24px;
-    background:#2e7d32;
-    color:white;
-    text-decoration:none;
-    border-radius:12px;
-    font-weight:bold;
+p {
+    margin: 5px 0;
+    font-size: 14px;
 }
 
-.button:hover{
-    opacity:0.9;
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2e7d32;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+/* ปรับให้แสดงผลสวยงามบนหน้าจอมือถือ */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    .book-card, .bottom-card {
+        grid-column: span 1;
+    }
+    .card img {
+        max-height: none;
+    }
 }
 </style>
-
 </head>
 
 <body>
@@ -81,8 +112,7 @@ h3{
 
 <div class="container">
 
-    <!-- เล่ม 1 -->
-    <div class="card">
+    <div class="card book-card">
         <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg">
         <h3>📖 Collection เล่มที่ 1</h3>
         <a class="button" href="https://online.anyflip.com/zzhpt/ipox/mobile/index.html" target="_blank">
@@ -90,98 +120,53 @@ h3{
         </a>
     </div>
 
-    <!-- เล่ม 2 -->
-    <div class="card">
+    <div class="card book-card">
         <img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg">
         <h3>📖 Collection เล่มที่ 2</h3>
         <a class="button" href="https://online.anyflip.com/zzhpt/ecll/mobile/index.html" target="_blank">
             เปิดหนังสือ
         </a>
     </div>
-    <!-- เล่ม 3 -->
-<div class="card">
-    <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg">
 
-    <h3>📖 Collection เล่มที่ 3</h3>
+    <div class="card book-card">
+        <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg">
+        <h3>📖 Collection เล่มที่ 3</h3>
+        <a class="button" href="https://online.anyflip.com/zzhpt/rzrq/mobile/index.html" target="_blank">
+            เปิดหนังสือ
+        </a>
+    </div>
 
-    <a class="button"
-       href="https://online.anyflip.com/zzhpt/rzrq/mobile/index.html"
-       target="_blank">
-        เปิดหนังสือ
-    </a>
-</div>
+    <div class="card bottom-card" style="background:#eaf7ea; border:3px solid #4CAF50; border-radius:20px; text-align:center;">
+        <a href="gallery.html" style="text-decoration:none; color:inherit; display:block; height:100%;">
+            <div style="font-size:50px; margin-top:5px;">🌵</div>
+            <h3>
+                SUTHEPW13<br>
+                Cactus Gallery
+            </h3>
+            <p>
+                🌸 Collection of cactus flower images<br>
+                from SUTHEPW13
+            </p>
+            <div style="margin-top:15px; padding:10px; border:2px solid #4CAF50; border-radius:12px; font-weight:bold; background:white;">
+                Enter Gallery →
+            </div>
+        </a>
+    </div>
 
-<!-- 🌵 SUTHEPW13 Cactus Gallery -->
-<div class="card" style="
-    background:#eaf7ea;
-    border:3px solid #4CAF50;
-    border-radius:20px;
-    padding:20px;
-    text-align:center;
-">
-
-    <a href="gallery.html" style="text-decoration:none;color:inherit;">
-
-        <div style="font-size:60px;">
-            🌵
-        </div>
-
+    <div class="card calendar-card bottom-card">
+        <img src="https://raw.githubusercontent.com/suthepw13/Suthepw13-CACTUS/main/calendar/december2026.jpg" style="max-height:140px;">
         <h3>
-            SUTHEPW13<br>
-            Cactus Gallery
+            📅 ปฏิทินดอกแคคตัส ครี่งปีหลัง 2026
         </h3>
-
         <p>
-            🌸 Collection of cactus flower images<br>
-            from SUTHEPW13
+            🌵 กรกฎาคม - ธันวาคม | 📆 เชื่อมต่อ Google Calendar
         </p>
-
-        <div style="
-            margin-top:20px;
-            padding:12px;
-            border:2px solid #4CAF50;
-            border-radius:12px;
-            font-weight:bold;
-        ">
-            Enter Gallery →
-        </div>
-
-    </a>
-
-</div>
-
-<!-- ปฏิทิน -->
-<div class="card calendar-card full-width">
-
-    <img src="https://raw.githubusercontent.com/suthepw13/Suthepw13-CACTUS/main/calendar/december2026.jpg">
-
-    <h3>
-        📅 ปฏิทินดอกแคคตัส<br>
-        ครึ่งปีหลัง 2026
-    </h3>
-
-    <p>
-        🌵 กรกฎาคม - ธันวาคม<br>
-        📆 เชื่อมต่อ Google Calendar
-    </p>
-
-    <a class="button" href="calendar.html">
-        เปิดปฏิทิน
-    </a>
-
-</div>
+        <a class="button" href="calendar.html">
+            เปิดปฏิทิน
+        </a>
+    </div>
 
 </div>
 
 </body>
 </html>
-
-<!-
-</html>
-
-</div>
-
-</div>
-
-</body>
-        </html>
