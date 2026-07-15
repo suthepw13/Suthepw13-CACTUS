@@ -13,9 +13,10 @@
         .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto 40px auto; }
         .card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
         
-        /* รูปส่วนบน */
-        .card-img-top { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
-        /* รูปหนังสือ (ตั้งค่า contain เพื่อให้แสดงผลเต็มหน้าปก ไม่โดนตัดขอบ) */
+        /* แก้ตรงนี้ครับ! เปลี่ยนเป็น contain เพื่อให้ดอกแคคตัสพื้นดำโชว์เต็มดอก ไม่โดนตัดขอบ */
+        .card-img-top { width: 100%; height: 200px; object-fit: contain; border-radius: 10px; margin-bottom: 10px; }
+        
+        /* รูปหนังสือ โชว์เต็มเล่ม */
         .card-img-book { width: 100%; height: 300px; object-fit: contain; margin-bottom: 10px; } 
         
         .photo-count { color: #d32f2f; font-size: 0.95em; font-weight: bold; margin: 5px 0; }
