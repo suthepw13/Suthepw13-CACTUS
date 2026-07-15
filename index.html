@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>SuthepW13 Cactus</title>
-<style>
-    body { font-family: Arial, sans-serif; background: #f3f7f3; text-align: center; padding: 20px; }
-    h1 { display: flex; justify-content: center; align-items: center; gap: 10px; color: #2e7d32; }
-    .header-icon { height: 50px; border-radius: 50%; }
-    .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 20px auto; }
-    .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; }
-    .bottom-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 20px auto; }
-</style>
+    <meta charset="UTF-8">
+    <title>SuthepW13 Cactus</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f3f7f3; text-align: center; padding: 20px; }
+        .header { display: flex; justify-content: center; align-items: center; gap: 10px; color: #2e7d32; margin-bottom: 30px; }
+        .header-icon { height: 50px; border-radius: 50%; }
+        /* กล่อง 3 อันบน */
+        .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto 40px auto; }
+        .card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+        .btn { display: inline-block; padding: 10px 20px; background: #2e7d32; color: white; text-decoration: none; border-radius: 20px; margin-top: 10px; }
+        /* ส่วนล่าง: Books */
+        .books-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    </style>
 </head>
 <body>
 
-<h1>
+<div class="header">
     <img src="MVIMG_20260715_105738.jpg" class="header-icon">
-    SuthepW13 Cactus Collection
-</h1>
+    <h1>Suthep W13 Cactus Collection</h1>
+    <img src="MVIMG_20260715_105738.jpg" class="header-icon">
+</div>
 
-<!-- ส่วนบน: 3 กล่องหลัก -->
+<!-- ส่วนบน: 3 กล่องหลักที่กดได้ -->
 <div class="container">
     <div class="card">
         <img src="20260702_194152_2301.jpg">
-        <h3>Xiaomi 17 Ultra Gallery</h3>
+        <h3>Cactus Gallery (by Xiaomi 17 Ultra)</h3>
+        <a href="xiaomi-gallery.html" class="btn">Enter Gallery →</a>
     </div>
     <div class="card">
         <img src="20260702_194059_9605.jpg">
         <h3>Cactus Gallery</h3>
+        <a href="gallery.html" class="btn">Enter Gallery →</a>
     </div>
     <div class="card">
         <img src="MVIMG_20260715_105738.jpg">
         <h3>ปฏิทินแคคตัส</h3>
+        <a href="calendar.html" class="btn">เปิดปฏิทิน →</a>
     </div>
 </div>
 
@@ -40,10 +47,10 @@
 <h2>Books Collection</h2>
 
 <!-- ส่วนล่าง: 3 เล่มหนังสือ -->
-<div class="bottom-section">
-    <div class="card"><img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg"><h3>เล่มที่ 1</h3></div>
-    <div class="card"><img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg"><h3>เล่มที่ 2</h3></div>
-    <div class="card"><img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg"><h3>เล่มที่ 3</h3></div>
+<div class="books-section">
+    <div class="card"><img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg"><h3>Collection เล่มที่ 1</h3><a href="https://anyflip.com/zzhpt/ipox/" class="btn">เปิดหนังสือ</a></div>
+    <div class="card"><img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg"><h3>Collection เล่มที่ 2</h3><a href="https://anyflip.com/zzhpt/ecll/" class="btn">เปิดหนังสือ</a></div>
+    <div class="card"><img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg"><h3>Collection เล่มที่ 3</h3><a href="https://anyflip.com/zzhpt/rzrq/" class="btn">เปิดหนังสือ</a></div>
 </div>
 
 </body>
