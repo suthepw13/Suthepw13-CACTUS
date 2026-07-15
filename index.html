@@ -13,16 +13,17 @@
         .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto 40px auto; }
         .card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
         
-        /* แก้ตรงนี้ครับ! เปลี่ยนเป็น contain เพื่อให้ดอกแคคตัสพื้นดำโชว์เต็มดอก ไม่โดนตัดขอบ */
-        .card-img-top { width: 100%; height: 200px; object-fit: contain; border-radius: 10px; margin-bottom: 10px; }
+        /* เพิ่มสีพื้นหลังให้ 3 กล่องด้านบน เป็นสีเหลืองครีมอ่อนๆ จะได้เด่นขึ้น */
+        .top-card { background: #fff8e1; }
         
-        /* รูปหนังสือ โชว์เต็มเล่ม */
+        .card-img-top { width: 100%; height: 200px; object-fit: contain; border-radius: 10px; margin-bottom: 10px; }
         .card-img-book { width: 100%; height: 300px; object-fit: contain; margin-bottom: 10px; } 
         
+        /* สไตล์ตัวหนังสือสีแดง ตัวหนา (ใช้ร่วมกันทั้ง Xiaomi และ รูปในอดีต) */
         .photo-count { color: #d32f2f; font-size: 0.95em; font-weight: bold; margin: 5px 0; }
-        h3 { margin: 10px 0; }
-        .subtitle { font-size: 0.8em; color: #555; font-weight: normal; }
-        .btn { display: inline-block; padding: 10px 20px; background: #2e7d32; color: white; text-decoration: none; border-radius: 20px; margin-top: auto; font-size: 0.9em; width: fit-content; }
+        h3 { margin: 10px 0 5px 0; }
+        
+        .btn { display: inline-block; padding: 10px 20px; background: #2e7d32; color: white; text-decoration: none; border-radius: 20px; margin-top: 15px; font-size: 0.9em; width: fit-content; }
         
         .books-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
     </style>
@@ -37,20 +38,21 @@
 
 <div class="container">
     <!-- กล่อง 1 -->
-    <div class="card">
+    <div class="card top-card">
         <img src="20260702_194152_2301.jpg" class="card-img-top">
-        <h3>Cactus Gallery<br><span class="subtitle">(by Xiaomi 17 Ultra)</span></h3>
+        <h3>Cactus Gallery</h3>
+        <p class="photo-count">📸 by Xiaomi 17 Ultra</p>
         <a href="xiaomi-gallery.html" class="btn">Enter Gallery →</a>
     </div>
     <!-- กล่อง 2 -->
-    <div class="card">
+    <div class="card top-card">
         <img src="20260702_194059_9605.jpg" class="card-img-top">
         <h3>Cactus Gallery</h3>
         <p class="photo-count">🌸 ภาพดอกแคคตัสในอดีต 503 รูป</p>
         <a href="gallery.html" class="btn">Enter Gallery →</a>
     </div>
     <!-- กล่อง 3 -->
-    <div class="card">
+    <div class="card top-card">
         <img src="MVIMG_20260715_105738.jpg" class="card-img-top">
         <h3>ปฏิทินแคคตัส</h3>
         <a href="calendar.html" class="btn">เปิดปฏิทิน →</a>
@@ -60,7 +62,7 @@
 <hr>
 <h2>Books Collection</h2>
 
-<!-- ส่วนหนังสือ -->
+<!-- ส่วนหนังสือ (ให้พื้นหลังเป็นสีขาว) -->
 <div class="books-section">
     <div class="card">
         <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg" class="card-img-book">
