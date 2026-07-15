@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suthep W13 Cactus</title>
-<link rel="icon" type="image/png" href="file_0000000089487206b222bad9c842a692.png">
+<title>SuthepW13 Cactus</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 
 <style>
 body {
@@ -17,10 +17,29 @@ body {
 
 h1 {
     margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 26px;
+    margin-bottom: 25px;
+    font-size: 28px;
     color: #2e7d32;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-icon {
+    height: 45px;
+    width: auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.card-icon {
+    height: 70px;
+    width: auto;
+    margin-top: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .container {
@@ -47,12 +66,11 @@ h1 {
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
-/* ปรับให้ทุกกล่องกินพื้นที่ 2 ส่วนจาก 6 ส่วน (ทำให้เรียง 3 กล่องต่อ 1 แถวได้พอดีเป๊ะ) */
 .book-card, .bottom-card {
     grid-column: span 2;
 }
 
-.card img {
+.card img.book-cover {
     width: 100%;
     max-height: 220px;
     object-fit: contain;
@@ -64,18 +82,9 @@ h1 {
     box-sizing: border-box;
 }
 
-h3 {
-    margin: 15px 0 5px 0;
-    font-size: 16px;
-    color: inherit; /* ให้สีตัวหนังสือเปลี่ยนตามกล่อง */
-}
-
-p {
-    margin: 5px 0 10px 0;
-    font-size: 14px;
-    color: inherit;
-    opacity: 0.8;
-}
+h3 { margin: 15px 0 5px 0; font-size: 16px; color: inherit; }
+h4 { margin: 5px 0; font-size: 15px; }
+p { margin: 5px 0 10px 0; font-size: 14px; color: inherit; opacity: 0.8; }
 
 .button {
     display: inline-block;
@@ -90,72 +99,50 @@ p {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.button:hover {
-    opacity: 0.85;
-}
-
-/* ปุ่มสีต่างๆ */
+.button:hover { opacity: 0.85; }
 .btn-green { background: #2e7d32; }
 .btn-orange { background: #e65100; }
 .btn-dark { background: #333333; border: 1px solid #ff6e00; }
 
-/* มือถือ */
 @media (max-width: 768px) {
     .container { grid-template-columns: 1fr; }
     .book-card, .bottom-card { grid-column: span 1; }
-    .card img { max-height: 250px; }
+    .card img.book-cover { max-height: 250px; }
 }
 </style>
 </head>
 
 <body>
 
-<h1>🌵 Suthep W13 Cactus Collection 🌵</h1>
+<h1>
+    <img src="MVIMG_20260715_105738.jpg" alt="Icon" class="header-icon">
+    SuthepW13 Cactus Collection
+    <img src="MVIMG_20260715_105738.jpg" alt="Icon" class="header-icon">
+</h1>
 
 <div class="container">
-
-    <div class="card book-card" style="background-color: #e3f2fd; color: #333;">
-        <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg" alt="Collection 1">
-        <h3>📖 Collection เล่มที่ 1</h3>
-        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ipox/mobile/index.html" target="_blank">
-            เปิดหนังสือ
-        </a>
-    </div>
-
-    <div class="card book-card" style="background-color: #fff3e0; color: #333;">
-        <img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg" alt="Collection 2">
-        <h3>📖 Collection เล่มที่ 2</h3>
-        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ecll/mobile/index.html" target="_blank">
-            เปิดหนังสือ
-        </a>
-    </div>
-
-    <div class="card book-card" style="background-color: #fce4ec; color: #333;">
-        <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg" alt="Collection 3">
-        <h3>📖 Collection เล่มที่ 3</h3>
-        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/rzrq/mobile/index.html" target="_blank">
-            เปิดหนังสือ
-        </a>
-    </div>
-
-    <div class="card bottom-card" style="background:#eaf7ea; border:3px solid #4CAF50; color: #333;">
-        <a href="gallery.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; height:100%; width:100%;">
-            <div style="font-size:50px; margin-top:10px;">🌵</div>
-            <h3>SUTHEPW13<br>Cactus Gallery</h3>
-            <p>🌸 รวมภาพดอกแคคตัสทั้งหมด</p>
-            <div class="button btn-green" style="margin-top:10px;">Enter Gallery →</div>
-        </a>
-    </div>
-
+    <!-- กล่องที่ 1: Xiaomi 17 Ultra -->
     <div class="card bottom-card" style="background:#1a1a1a; border:3px solid #ff6e00; color: #ffffff;">
         <a href="xiaomi-gallery.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; height:100%; width:100%;">
-            <div style="font-size:50px; margin-top:10px;">📸</div>
-            <h3 style="color: #ff6e00;">Xiaomi 17 Ultra<br>Masterpiece</h3>
+            <img src="20260702_194152_2301.jpg" alt="Xiaomi Icon" class="card-icon">
+            <h3 style="color: #ffffff; margin-bottom: 0;">SUTHEPW13<br>Cactus Gallery</h3>
+            <h4 style="color: #ff6e00;">by...Xiaomi 17 Ultra</h4>
             <p style="color: #cccccc;">🌟 สัมผัสความคมชัดระดับ Ultra</p>
             <div class="button btn-dark" style="margin-top:10px;">View Masterpiece →</div>
         </a>
     </div>
 
+    <!-- กล่องที่ 2: แกลเลอรี่ในอดีต -->
+    <div class="card bottom-card" style="background:#eaf7ea; border:3px solid #4CAF50; color: #333;">
+        <a href="gallery.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; height:100%; width:100%;">
+            <img src="20260702_194059_9605.jpg" alt="Past Gallery Icon" class="card-icon">
+            <h3>SUTHEPW13<br>Cactus Gallery</h3>
+            <p>🌸 รวมภาพดอกแคคตัสในอดีต</p>
+            <div class="button btn-green" style="margin-top:10px;">Enter Gallery →</div>
+        </a>
+    </div>
+
+    <!-- กล่องที่ 3: ปฏิทิน -->
     <div class="card bottom-card" style="background:#fff9c4; border:3px solid #ffb300; color: #333;">
         <div style="font-size:50px; margin-top:10px;">🗓️</div>
         <h3>📅 ปฏิทินแคคตัส<br>ครึ่งปีหลัง 2026</h3>
@@ -163,6 +150,24 @@ p {
         <a class="button btn-orange" href="calendar.html">เปิดปฏิทิน</a>
     </div>
 
+    <!-- แถวที่ 2: หนังสือ -->
+    <div class="card book-card" style="background-color: #e3f2fd; color: #333;">
+        <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg" alt="Collection 1" class="book-cover">
+        <h3>📖 Collection เล่มที่ 1</h3>
+        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ipox/mobile/index.html" target="_blank">เปิดหนังสือ</a>
+    </div>
+
+    <div class="card book-card" style="background-color: #fff3e0; color: #333;">
+        <img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg" alt="Collection 2" class="book-cover">
+        <h3>📖 Collection เล่มที่ 2</h3>
+        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ecll/mobile/index.html" target="_blank">เปิดหนังสือ</a>
+    </div>
+
+    <div class="card book-card" style="background-color: #fce4ec; color: #333;">
+        <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg" alt="Collection 3" class="book-cover">
+        <h3>📖 Collection เล่มที่ 3</h3>
+        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/rzrq/mobile/index.html" target="_blank">เปิดหนังสือ</a>
+    </div>
 </div>
 
 </body>
