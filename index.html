@@ -6,15 +6,23 @@
     <title>SuthepW13 Cactus</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f3f7f3; text-align: center; padding: 20px; }
-        /* ส่วนหัวที่ปรับให้ W13 ติดกับ Suthep */
         .header { display: flex; justify-content: center; align-items: center; gap: 15px; color: #2e7d32; margin-bottom: 30px; }
         .header-icon { height: 40px; border-radius: 50%; }
         h1 { margin: 0; font-size: 2em; }
         
         .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto 40px auto; }
-        .card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
-        .btn { display: inline-block; padding: 10px 20px; background: #2e7d32; color: white; text-decoration: none; border-radius: 20px; margin-top: 10px; font-size: 0.9em; }
+        .card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+        
+        /* รูปส่วนบน */
+        .card-img-top { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+        /* รูปหนังสือ (ตั้งค่า contain เพื่อให้แสดงผลเต็มหน้าปก ไม่โดนตัดขอบ) */
+        .card-img-book { width: 100%; height: 300px; object-fit: contain; margin-bottom: 10px; } 
+        
+        .photo-count { color: #d32f2f; font-size: 0.95em; font-weight: bold; margin: 5px 0; }
+        h3 { margin: 10px 0; }
+        .subtitle { font-size: 0.8em; color: #555; font-weight: normal; }
+        .btn { display: inline-block; padding: 10px 20px; background: #2e7d32; color: white; text-decoration: none; border-radius: 20px; margin-top: auto; font-size: 0.9em; width: fit-content; }
+        
         .books-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
     </style>
 </head>
@@ -27,18 +35,22 @@
 </div>
 
 <div class="container">
+    <!-- กล่อง 1 -->
     <div class="card">
-        <img src="20260702_194152_2301.jpg">
-        <h3>Cactus Gallery (by Xiaomi 17 Ultra)</h3>
+        <img src="20260702_194152_2301.jpg" class="card-img-top">
+        <h3>Cactus Gallery<br><span class="subtitle">(by Xiaomi 17 Ultra)</span></h3>
         <a href="xiaomi-gallery.html" class="btn">Enter Gallery →</a>
     </div>
+    <!-- กล่อง 2 -->
     <div class="card">
-        <img src="20260702_194059_9605.jpg">
+        <img src="20260702_194059_9605.jpg" class="card-img-top">
         <h3>Cactus Gallery</h3>
+        <p class="photo-count">🌸 ภาพดอกแคคตัสในอดีต 503 รูป</p>
         <a href="gallery.html" class="btn">Enter Gallery →</a>
     </div>
+    <!-- กล่อง 3 -->
     <div class="card">
-        <img src="MVIMG_20260715_105738.jpg">
+        <img src="MVIMG_20260715_105738.jpg" class="card-img-top">
         <h3>ปฏิทินแคคตัส</h3>
         <a href="calendar.html" class="btn">เปิดปฏิทิน →</a>
     </div>
@@ -47,10 +59,23 @@
 <hr>
 <h2>Books Collection</h2>
 
+<!-- ส่วนหนังสือ -->
 <div class="books-section">
-    <div class="card"><img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg"><h3>Collection เล่มที่ 1</h3><a href="https://anyflip.com/zzhpt/ipox/" class="btn">เปิดหนังสือ</a></div>
-    <div class="card"><img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg"><h3>Collection เล่มที่ 2</h3><a href="https://anyflip.com/zzhpt/ecll/" class="btn">เปิดหนังสือ</a></div>
-    <div class="card"><img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg"><h3>Collection เล่มที่ 3</h3><a href="https://anyflip.com/zzhpt/rzrq/" class="btn">เปิดหนังสือ</a></div>
+    <div class="card">
+        <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg" class="card-img-book">
+        <h3>Collection เล่มที่ 1</h3>
+        <a href="https://anyflip.com/zzhpt/ipox/" class="btn">เปิดหนังสือ</a>
+    </div>
+    <div class="card">
+        <img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg" class="card-img-book">
+        <h3>Collection เล่มที่ 2</h3>
+        <a href="https://anyflip.com/zzhpt/ecll/" class="btn">เปิดหนังสือ</a>
+    </div>
+    <div class="card">
+        <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg" class="card-img-book">
+        <h3>Collection เล่มที่ 3</h3>
+        <a href="https://anyflip.com/zzhpt/rzrq/" class="btn">เปิดหนังสือ</a>
+    </div>
 </div>
 
 </body>
