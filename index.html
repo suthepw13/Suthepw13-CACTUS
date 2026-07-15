@@ -25,7 +25,6 @@ h1 {
 
 .container {
     display: grid;
-    /* ใช้ระบบ 6 คอลัมน์ เพื่อให้แบ่ง 3 และ 2 ได้ลงตัว */
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
     max-width: 1100px;
@@ -39,7 +38,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center; /* บังคับให้เนื้อหาและปุ่มอยู่ตรงกลาง ไม่ยืดยาว */
+    align-items: center;
     transition: transform 0.2s;
 }
 
@@ -48,14 +47,9 @@ h1 {
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
-/* แถวบน: หนังสือ 3 เล่ม (แบ่งคนละ 2 จาก 6 ช่อง) */
-.book-card {
+/* ปรับให้ทุกกล่องกินพื้นที่ 2 ส่วนจาก 6 ส่วน (ทำให้เรียง 3 กล่องต่อ 1 แถวได้พอดีเป๊ะ) */
+.book-card, .bottom-card {
     grid-column: span 2;
-}
-
-/* แถวล่าง: แกลเลอรี่และปฏิทิน (แบ่งคนละ 3 จาก 6 ช่อง) */
-.bottom-card {
-    grid-column: span 3;
 }
 
 .card img {
@@ -65,7 +59,7 @@ h1 {
     border-radius: 12px;
     display: block;
     margin: 0 auto;
-    background: white; /* ใส่พื้นหลังขาวให้รูปหนังสือนิดนึง จะได้ตัดกับสีการ์ด */
+    background: white;
     padding: 5px;
     box-sizing: border-box;
 }
@@ -73,13 +67,14 @@ h1 {
 h3 {
     margin: 15px 0 5px 0;
     font-size: 16px;
-    color: #333;
+    color: inherit; /* ให้สีตัวหนังสือเปลี่ยนตามกล่อง */
 }
 
 p {
     margin: 5px 0 10px 0;
     font-size: 14px;
-    color: #555;
+    color: inherit;
+    opacity: 0.8;
 }
 
 .button {
@@ -87,11 +82,11 @@ p {
     padding: 10px 25px;
     color: white;
     text-decoration: none;
-    border-radius: 25px; /* ปรับให้ปุ่มโค้งมนสวยงาม */
+    border-radius: 25px;
     font-weight: bold;
     font-size: 14px;
     margin-top: auto;
-    align-self: center; /* ป้องกันไม่ให้ปุ่มยืดยาวเต็มกรอบ */
+    align-self: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
@@ -99,22 +94,16 @@ p {
     opacity: 0.85;
 }
 
-/* ปุ่มสีเขียวสำหรับหนังสือ */
+/* ปุ่มสีต่างๆ */
 .btn-green { background: #2e7d32; }
-/* ปุ่มสีส้มสำหรับปฏิทิน */
 .btn-orange { background: #e65100; }
+.btn-dark { background: #333333; border: 1px solid #ff6e00; }
 
-/* ปรับให้แสดงผลสวยงามบนหน้าจอมือถือ */
+/* มือถือ */
 @media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    .book-card, .bottom-card {
-        grid-column: span 1;
-    }
-    .card img {
-        max-height: 250px;
-    }
+    .container { grid-template-columns: 1fr; }
+    .book-card, .bottom-card { grid-column: span 1; }
+    .card img { max-height: 250px; }
 }
 </style>
 </head>
@@ -125,7 +114,7 @@ p {
 
 <div class="container">
 
-    <div class="card book-card" style="background-color: #e3f2fd;">
+    <div class="card book-card" style="background-color: #e3f2fd; color: #333;">
         <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg" alt="Collection 1">
         <h3>📖 Collection เล่มที่ 1</h3>
         <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ipox/mobile/index.html" target="_blank">
@@ -133,7 +122,7 @@ p {
         </a>
     </div>
 
-    <div class="card book-card" style="background-color: #fff3e0;">
+    <div class="card book-card" style="background-color: #fff3e0; color: #333;">
         <img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg" alt="Collection 2">
         <h3>📖 Collection เล่มที่ 2</h3>
         <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ecll/mobile/index.html" target="_blank">
@@ -141,7 +130,7 @@ p {
         </a>
     </div>
 
-    <div class="card book-card" style="background-color: #fce4ec;">
+    <div class="card book-card" style="background-color: #fce4ec; color: #333;">
         <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg" alt="Collection 3">
         <h3>📖 Collection เล่มที่ 3</h3>
         <a class="button btn-green" href="https://online.anyflip.com/zzhpt/rzrq/mobile/index.html" target="_blank">
@@ -149,34 +138,29 @@ p {
         </a>
     </div>
 
-    <div class="card bottom-card" style="background:#eaf7ea; border:3px solid #4CAF50;">
+    <div class="card bottom-card" style="background:#eaf7ea; border:3px solid #4CAF50; color: #333;">
         <a href="gallery.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; height:100%; width:100%;">
-            <div style="font-size:55px; margin-top:10px;">🌵</div>
-            <h3>
-                SUTHEPW13<br>
-                Cactus Gallery
-            </h3>
-            <p>
-                🌸 Collection of cactus flower images<br>
-                from SUTHEPW13
-            </p>
-            <div class="button btn-green" style="margin-top:10px;">
-                Enter Gallery →
-            </div>
+            <div style="font-size:50px; margin-top:10px;">🌵</div>
+            <h3>SUTHEPW13<br>Cactus Gallery</h3>
+            <p>🌸 รวมภาพดอกแคคตัสทั้งหมด</p>
+            <div class="button btn-green" style="margin-top:10px;">Enter Gallery →</div>
         </a>
     </div>
 
-    <div class="card bottom-card" style="background:#fff9c4; border:3px solid #ffb300;">
-        <div style="font-size:55px; margin-top:10px;">🗓️</div>
-        <h3>
-            📅 ปฏิทินดอกแคคตัส ครึ่งปีหลัง 2026
-        </h3>
-        <p>
-            🌵 กรกฎาคม - ธันวาคม | 📆 เชื่อมต่อ Google Calendar
-        </p>
-        <a class="button btn-orange" href="calendar.html">
-            เปิดปฏิทิน
+    <div class="card bottom-card" style="background:#1a1a1a; border:3px solid #ff6e00; color: #ffffff;">
+        <a href="xiaomi-gallery.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; height:100%; width:100%;">
+            <div style="font-size:50px; margin-top:10px;">📸</div>
+            <h3 style="color: #ff6e00;">Xiaomi 17 Ultra<br>Masterpiece</h3>
+            <p style="color: #cccccc;">🌟 สัมผัสความคมชัดระดับ Ultra</p>
+            <div class="button btn-dark" style="margin-top:10px;">View Masterpiece →</div>
         </a>
+    </div>
+
+    <div class="card bottom-card" style="background:#fff9c4; border:3px solid #ffb300; color: #333;">
+        <div style="font-size:50px; margin-top:10px;">🗓️</div>
+        <h3>📅 ปฏิทินแคคตัส<br>ครึ่งปีหลัง 2026</h3>
+        <p>📆 เชื่อมต่อ Google Calendar</p>
+        <a class="button btn-orange" href="calendar.html">เปิดปฏิทิน</a>
     </div>
 
 </div>
