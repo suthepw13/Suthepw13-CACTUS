@@ -1,172 +1,78 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SuthepW13 Cactus</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f3f7f3;
-    margin: 0;
-    padding: 15px;
-    text-align: center;
-}
-
-h1 {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    font-size: 28px;
-    color: #2e7d32;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-.header-icon {
-    height: 45px;
-    width: auto;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.card-icon {
-    height: 70px;
-    width: auto;
-    margin-top: 10px;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
-    max-width: 1100px;
-    margin: auto;
-}
-
-.card {
-    border-radius: 20px;
-    padding: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-.book-card, .bottom-card {
-    grid-column: span 2;
-}
-
-.card img.book-cover {
-    width: 100%;
-    max-height: 220px;
-    object-fit: contain;
-    border-radius: 12px;
-    display: block;
-    margin: 0 auto;
-    background: white;
-    padding: 5px;
-    box-sizing: border-box;
-}
-
-h3 { margin: 15px 0 5px 0; font-size: 16px; color: inherit; }
-h4 { margin: 5px 0; font-size: 15px; }
-p { margin: 5px 0 10px 0; font-size: 14px; color: inherit; opacity: 0.8; }
-
-.button {
-    display: inline-block;
-    padding: 10px 25px;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 14px;
-    margin-top: auto;
-    align-self: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.button:hover { opacity: 0.85; }
-.btn-green { background: #2e7d32; }
-.btn-orange { background: #e65100; }
-.btn-dark { background: #333333; border: 1px solid #ff6e00; }
-
-@media (max-width: 768px) {
-    .container { grid-template-columns: 1fr; }
-    .book-card, .bottom-card { grid-column: span 1; }
-    .card img.book-cover { max-height: 250px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/jpeg" href="MVIMG_20260715_105738.jpg">
+    <title>SuthepW13 Cactus</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f3f7f3; text-align: center; padding: 20px; }
+        .header { display: flex; justify-content: center; align-items: center; gap: 15px; color: #2e7d32; margin-bottom: 30px; }
+        .header-icon { height: 40px; border-radius: 50%; }
+        h1 { margin: 0; font-size: 2em; }
+        
+        .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto 40px auto; }
+        
+        /* ปรับปรุงตรงนี้: ให้ทุกการ์ด (รวมทั้งหนังสือ) มีพื้นหลังสีเหลืองครีมอ่อนเหมือนกันทั้งหมด เพื่อความเป็นระเบียบ */
+        .card { background: #fff8e1; padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+        
+        .card-img-top { width: 100%; height: 200px; object-fit: contain; border-radius: 10px; margin-bottom: 10px; }
+        .card-img-book { width: 100%; height: 300px; object-fit: contain; margin-bottom: 10px; } 
+        
+        /* สไตล์ตัวหนังสือสีแดง ตัวหนา (เท่ากันและเหมือนกันทั้ง Xiaomi และรูปในอดีต) */
+        .photo-count { color: #d32f2f; font-size: 0.95em; font-weight: bold; margin: 5px 0; }
+        h3 { margin: 10px 0 5px 0; }
+        
+        .btn { display: inline-block; padding: 10px 20px; background: #2e7d32; color: white; text-decoration: none; border-radius: 20px; margin-top: 15px; font-size: 0.9em; width: fit-content; }
+        
+        .books-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    </style>
 </head>
-
 <body>
 
-<h1>
-    <img src="MVIMG_20260715_105738.jpg" alt="Icon" class="header-icon">
-    SuthepW13 Cactus Collection
-    <img src="MVIMG_20260715_105738.jpg" alt="Icon" class="header-icon">
-</h1>
+<div class="header">
+    <img src="MVIMG_20260715_105738.jpg" class="header-icon">
+    <h1>SuthepW13 Cactus Collection</h1>
+    <img src="MVIMG_20260715_105738.jpg" class="header-icon">
+</div>
 
 <div class="container">
-    <!-- กล่องที่ 1: Xiaomi 17 Ultra -->
-    <div class="card bottom-card" style="background:#1a1a1a; border:3px solid #ff6e00; color: #ffffff;">
-        <a href="xiaomi-gallery.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; height:100%; width:100%;">
-            <img src="20260702_194152_2301.jpg" alt="Xiaomi Icon" class="card-icon">
-            <h3 style="color: #ffffff; margin-bottom: 0;">SUTHEPW13<br>Cactus Gallery</h3>
-            <h4 style="color: #ff6e00;">by...Xiaomi 17 Ultra</h4>
-            <p style="color: #cccccc;">🌟 สัมผัสความคมชัดระดับ Ultra</p>
-            <div class="button btn-dark" style="margin-top:10px;">View Masterpiece →</div>
-        </a>
+    <div class="card">
+        <img src="20260702_194152_2301.jpg" class="card-img-top">
+        <h3>Cactus Gallery</h3>
+        <p class="photo-count">📸 by Xiaomi 17 Ultra</p>
+        <a href="xiaomi-gallery.html" class="btn">Enter Gallery →</a>
     </div>
-
-    <!-- กล่องที่ 2: แกลเลอรี่ในอดีต -->
-    <div class="card bottom-card" style="background:#eaf7ea; border:3px solid #4CAF50; color: #333;">
-        <a href="gallery.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; height:100%; width:100%;">
-            <img src="20260702_194059_9605.jpg" alt="Past Gallery Icon" class="card-icon">
-            <h3>SUTHEPW13<br>Cactus Gallery</h3>
-            <p>🌸 รวมภาพดอกแคคตัสในอดีต</p>
-            <div class="button btn-green" style="margin-top:10px;">Enter Gallery →</div>
-        </a>
+    <div class="card">
+        <img src="20260702_194059_9605.jpg" class="card-img-top">
+        <h3>Cactus Gallery</h3>
+        <p class="photo-count">🌸 ภาพดอกแคคตัสในอดีต 503 รูป</p>
+        <a href="gallery.html" class="btn">Enter Gallery →</a>
     </div>
-
-    <!-- กล่องที่ 3: ปฏิทิน -->
-    <div class="card bottom-card" style="background:#fff9c4; border:3px solid #ffb300; color: #333;">
-        <div style="font-size:50px; margin-top:10px;">🗓️</div>
-        <h3>📅 ปฏิทินแคคตัส<br>ครึ่งปีหลัง 2026</h3>
-        <p>📆 เชื่อมต่อ Google Calendar</p>
-        <a class="button btn-orange" href="calendar.html">เปิดปฏิทิน</a>
+    <div class="card">
+        <img src="MVIMG_20260715_105738.jpg" class="card-img-top">
+        <h3>ปฏิทินแคคตัส</h3>
+        <a href="calendar.html" class="btn">เปิดปฏิทิน →</a>
     </div>
+</div>
 
-    <!-- แถวที่ 2: หนังสือ -->
-    <div class="card book-card" style="background-color: #e3f2fd; color: #333;">
-        <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg" alt="Collection 1" class="book-cover">
-        <h3>📖 Collection เล่มที่ 1</h3>
-        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ipox/mobile/index.html" target="_blank">เปิดหนังสือ</a>
+<hr>
+<h2>Books Collection</h2>
+
+<div class="books-section">
+    <div class="card">
+        <img src="https://online.anyflip.com/zzhpt/ipox/files/shot.jpg" class="card-img-book">
+        <h3>Collection เล่มที่ 1</h3>
+        <a href="https://anyflip.com/zzhpt/ipox/" class="btn">เปิดหนังสือ</a>
     </div>
-
-    <div class="card book-card" style="background-color: #fff3e0; color: #333;">
-        <img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg" alt="Collection 2" class="book-cover">
-        <h3>📖 Collection เล่มที่ 2</h3>
-        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/ecll/mobile/index.html" target="_blank">เปิดหนังสือ</a>
+    <div class="card">
+        <img src="https://online.anyflip.com/zzhpt/ecll/files/shot.jpg" class="card-img-book">
+        <h3>Collection เล่มที่ 2</h3>
+        <a href="https://anyflip.com/zzhpt/ecll/" class="btn">เปิดหนังสือ</a>
     </div>
-
-    <div class="card book-card" style="background-color: #fce4ec; color: #333;">
-        <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg" alt="Collection 3" class="book-cover">
-        <h3>📖 Collection เล่มที่ 3</h3>
-        <a class="button btn-green" href="https://online.anyflip.com/zzhpt/rzrq/mobile/index.html" target="_blank">เปิดหนังสือ</a>
+    <div class="card">
+        <img src="https://online.anyflip.com/zzhpt/rzrq/files/shot.jpg" class="card-img-book">
+        <h3>Collection เล่มที่ 3</h3>
+        <a href="https://anyflip.com/zzhpt/rzrq/" class="btn">เปิดหนังสือ</a>
     </div>
 </div>
 
