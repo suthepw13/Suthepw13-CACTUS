@@ -11,11 +11,12 @@
         .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); flex-direction: column; justify-content: center; align-items: center; }
         #lightbox img { max-width: 90%; max-height: 70%; border: 5px solid white; }
-        #lightbox-caption { color: white; font-size: 1.5rem; margin-top: 15px; }
+        #lightbox-caption { color: white; font-size: 1.5rem; margin-top: 15px; text-align: center; line-height: 1.5; }
         .nav-btn { position: absolute; top: 50%; color: white; font-size: 50px; cursor: pointer; padding: 20px; user-select: none; }
         .left-btn { left: 20px; }
         .right-btn { right: 20px; }
         .close-btn { position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
+        .desc-text { font-size: 1rem; color: #dddddd; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -29,8 +30,114 @@
     </div>
 
     <script>
-        // สมมติว่ามี 397 รูป (อ้างอิงจากมุมขวาในรูปที่สหายส่งมา) 
-        // สหายแก้เลขตรงนี้ให้ตรงกับจำนวนรูปไฟล์สุดท้ายได้เลยนะครับ
+        // 📝 สมุดทะเบียน: ชื่อสายพันธุ์
+        const cactusNames = {
+            1: "Echinopsis (อิชินอป นูดัม)",
+            2: "Lobivia (โลบิเวีย)",
+            3: "Lobivia (โลบิเวีย)",
+            4: "Huernia zebrina (ฮูเออร์เนีย)",
+            5: "Gymnocalycium (ยิมโนด่าง)",
+            6: "Gymnocalycium (ยิมโน)",
+            7: "Gymnocalycium (ยิมโน)",
+            8: "Gymnocalycium (ยิมโน)",
+            9: "Gymnocalycium (ยิมโน)",
+            10: "Gymnocalycium (ยิมโน)",
+            11: "Gymnocalycium (ยิมโน)",
+            12: "Gymnocalycium (ยิมโน)",
+            13: "Astrophytum (แอสโตร)",
+            14: "Astrophytum (แอสโตร)",
+            15: "Astrophytum (แอสโตร)",
+            16: "Astrophytum (แอสโตร)",
+            17: "Gymnocalycium (ยิมโนสีหวาน)",
+            18: "Echinopsis (อิชินอปซิส)",
+            19: "Echinopsis (อิชินอปซิส)",
+            20: "Echinopsis (อิชินอปซิส)",
+            21: "Echinopsis (อิชินอปซิส)",
+            22: "Echinopsis (อิชินอปซิส)",
+            23: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            24: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            25: "Echinopsis (อิชินอปซิส)",
+            26: "Echinopsis (อิชินอปซิส)",
+            27: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            28: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            29: "Lobivia (โลบิเวีย ดอกแดง)",
+            30: "Lobivia (โลบิเวีย ดอกแดง)",
+            31: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            32: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            33: "Lobivia (โลบิเวีย ดอกแดง)",
+            34: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            35: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            36: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            37: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            38: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            39: "Combo (Lobivia แดง & Echinopsis ขาว)",
+            40: "Lobivia (โลบิเวีย - ดอกตูม)",
+            41: "Lobivia (โลบิเวีย ดอกส้มชมพู)",
+            42: "Lobivia (โลบิเวีย ดอกส้มชมพู)",
+            43: "Lobivia (โลบิเวีย ดอกส้มชมพู)",
+            44: "Lobivia (โลบิเวีย ดอกส้มชมพู)",
+            45: "Lobivia (โลบิเวีย ดอกส้มชมพู)",
+            46: "Lobivia (โลบิเวีย ดอกแดงสด)",
+            47: "Lobivia (โลบิเวีย ดอกส้มชมพู)",
+            48: "Gymnocalycium (ยิมโน กลุ่มรวม)",
+            49: "Echinopsis (อิชินอปซิส ดอกบาน)",
+            50: "Echinopsis (อิชินอปซิส คู่)"
+        };
+
+        // 📝 สมุดทะเบียน: คำบรรยายและเกร็ดความรู้
+        const cactusDesc = {
+            1: "ลำต้นสีเขียว พูเป็นร่องชัดเจน ตุ่มหนามปุยขาว ดอกสีขาวใหญ่",
+            2: "ก้านดอกยาวเหยียดมีขนปุกปุย เอกลักษณ์ของตระกูลโลบิเวีย",
+            3: "ดอกสีส้มอมชมพูสดใส บานสะพรั่งดูสวยงามมาก",
+            4: "ฮูเออร์เนีย ดอกลายทางวงกลมเหมือนห่วงยาง สวยแปลกตา",
+            5: "ยิมโนโทนสีเข้ม ดอกสีขาวสะอาดตา",
+            6: "ดอกสีขาวบริสุทธิ์ กลีบละเอียดเรียงตัวสวย",
+            7: "ดอกหอมอ่อนๆ สีสันตัดกับลำต้นสีเข้ม",
+            8: "กลุ่มดอกยิมโนบานพร้อมกันหลายดอก",
+            9: "ความสมมาตรของดอกยิมโนที่กำลังเบ่งบานเต็มที่",
+            10: "ยิมโนสีเข้มกับดอกสีขาว คลาสสิกและสวยงาม",
+            11: "กลีบดอกซ้อนทับกันอย่างเป็นระเบียบ",
+            12: "ยิมโนโทนสีชมพูอ่อน ไล่เฉดสีที่ปลายกลีบ",
+            13: "แอสโตรดอกเหลืองสด ใจกลางเกสรสีส้ม",
+            14: "แอสโตรกลีบเหลืองอร่าม บานรับแดดพลังเต็มที่",
+            15: "แอสโตรดอกเหลือง ความสดใสของสายพันธุ์นี้",
+            16: "ดอกสีเหลืองทองของแอสโตร เป็นเอกลักษณ์",
+            17: "ยิมโนสีหวานละมุน กลีบชมพูไล่เฉด",
+            18: "อิชินอปซิสดอกใหญ่สีขาวนวลตา",
+            19: "ความอ่อนหวานของกลีบดอกสีขาวอมชมพู",
+            20: "ดอกสีขาวบริสุทธิ์ แผ่รัศมีกว้าง",
+            21: "อิชินอปซิสบานคู่ ดูสง่างาม",
+            22: "ความละเอียดของเกสรและกลีบดอก",
+            23: "ความต่างที่ลงตัว ระหว่างโลบิเวียแดงและอิชินอปขาว",
+            24: "สีแดงตัดกับสีขาว ให้บรรยากาศสดชื่น",
+            25: "อิชินอปซิสดอกขาวท่ามกลางแสงยามเย็น",
+            26: "อิชินอปซิสดอกเดี่ยวชูช่อรับแสง",
+            27: "การจับคู่สีสดและสีขาว ดูโดดเด่น",
+            28: "ภาพสวนแคคตัสที่บานรับแสงยามเย็น",
+            29: "ความสดของสีแดงโลบิเวีย ชวนหลงใหล",
+            30: "โลบิเวียสีแดงสดที่บานเต็มที่",
+            31: "ชุดรวมสีแดงและสีขาว บานพร้อมกัน",
+            32: "ความงดงามของสวนแคคตัสบานยามเช้า",
+            33: "โลบิเวียสีแดงสดพร้อมหนามแหลม",
+            34: "ภาพเปรียบเทียบความต่างของดอกโลบิเวียและอิชินอป",
+            35: "ความสวยงามที่แตกต่างแต่เข้ากันได้ดี",
+            36: "ดอกสีขาวและแดง สัญลักษณ์ของสวนที่มีชีวิต",
+            37: "โลบิเวียแดงเด่นท่ามกลางอิชินอปขาว",
+            38: "สวนแคคตัสยามบานสะพรั่ง",
+            39: "ความสวยงามที่หลากหลายของสีสันดอก",
+            40: "ดอกตูมโลบิเวีย รอวันเบ่งบาน",
+            41: "สีส้มอมชมพู สดใสเป็นเอกลักษณ์",
+            42: "ความละเอียดของกลีบดอกโลบิเวียสีส้ม",
+            43: "มุมมองสวยๆ ของโลบิเวียสีส้ม",
+            44: "โลบิเวียสีส้มบานรับแดดอุ่น",
+            45: "สีสันสดใสที่ทำให้สวนมีชีวิต",
+            46: "โลบิเวียสีแดงเข้มที่บานเต็มช่อ",
+            47: "เฉดสีส้มชมพูที่ดูละมุนตา",
+            48: "รวมมิตรยิมโนในกระถาง บานพร้อมกันหลายสี",
+            49: "อิชินอปซิสดอกสีขาวนวลละมุน",
+            50: "อิชินอปซิสคู่สีขาว บานพร้อมกัน"
+        };
+
         const total = 397; 
         const container = document.getElementById('gallery');
         let current = 1;
@@ -38,16 +145,24 @@
         for (let i = 1; i <= total; i++) {
             const div = document.createElement('div');
             div.className = 'card';
-            // จุดที่แก้: เปลี่ยนจาก xm (${i}) เป็น xm(${i}) แบบไม่มีเว้นวรรค
-            div.innerHTML = `<img src="xiaomi/xm(${i}).jpg"><div>รูปที่ ${i}</div>`;
+            
+            // เลือกว่าจะโชว์ชื่อแคคตัส หรือโชว์แค่คำว่า "รูปที่ x"
+            const displayName = cactusNames[i] ? cactusNames[i] : `รูปที่ ${i}`;
+            
+            div.innerHTML = `<img src="xiaomi/xm(${i}).jpg"><div style="margin-top: 8px; font-weight: bold;">${displayName}</div>`;
             div.onclick = () => { current = i; show(i); };
             container.appendChild(div);
         }
 
         function show(i) {
-            // จุดที่แก้: เปลี่ยนเป็น xm(${i}) แบบไม่มีเว้นวรรค
             document.getElementById('lightbox-img').src = `xiaomi/xm(${i}).jpg`;
-            document.getElementById('lightbox-caption').innerText = 'รูปที่ ' + i;
+            
+            // ตรวจสอบว่ามีข้อมูลชื่อและคำบรรยายหรือไม่
+            const name = cactusNames[i] ? cactusNames[i] : `รูปที่ ${i}`;
+            const desc = cactusDesc[i] ? `<div class="desc-text">${cactusDesc[i]}</div>` : '';
+            
+            // แสดงผลในหน้าจอขยาย
+            document.getElementById('lightbox-caption').innerHTML = `<strong>${name}</strong>${desc}`;
             document.getElementById('lightbox').style.display = 'flex';
         }
 
