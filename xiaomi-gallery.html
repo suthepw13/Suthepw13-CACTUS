@@ -5,148 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuthepW13 Cactus - Xiaomi 17 Ultra</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fcfbf7;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            margin-top: 20px;
-        }
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            vertical-align: middle;
-            margin: 0 15px;
-            border-radius: 50%;
-        }
-        h1 {
-            color: #2e7d32;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .subtitle {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 25px;
-        }
-        .btn-back {
-            display: inline-block;
-            padding: 10px 25px;
-            background-color: #2e7d32;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-        }
-        .btn-back:hover {
-            background-color: #1b5e20;
-            transform: translateY(-2px);
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-        .card {
-            background: #fff8e1;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            background-color: #eaeaea;
-        }
-        .photo-count {
-            color: #d32f2f;
-            font-size: 1em;
-            font-weight: bold;
-            margin-top: 5px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fcfbf7; margin: 0; padding: 20px; color: #333; }
+        header { text-align: center; margin-bottom: 40px; margin-top: 20px; }
+        .logo-img { width: 60px; height: 60px; vertical-align: middle; margin: 0 15px; border-radius: 50%; }
+        h1 { color: #2e7d32; font-size: 2.2rem; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
+        .subtitle { font-size: 1.1rem; color: #555; margin-bottom: 25px; }
+        .btn-back { display: inline-block; padding: 10px 25px; background-color: #2e7d32; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.15); }
+        .btn-back:hover { background-color: #1b5e20; transform: translateY(-2px); }
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 10px; }
+        .card { background: #fff8e1; padding: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center; transition: transform 0.2s; cursor: pointer; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+        .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; background-color: #eaeaea; }
+        .photo-count { color: #d32f2f; font-size: 1em; font-weight: bold; margin-top: 5px; }
 
-        /* โค้ดสำหรับระบบคลิกขยายรูป */
-        #lightbox {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        #lightbox img {
-            max-width: 90%;
-            max-height: 85%;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        #lightbox-caption {
-            color: white;
-            font-size: 1.5rem;
-            margin-top: 15px;
-        }
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: white;
-            font-size: 50px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .close-btn:hover {
-            color: #ccc;
-        }
+        /* ระบบขยายรูป */
+        #lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; flex-direction: column; }
+        #lightbox img { max-width: 90%; max-height: 85%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        #lightbox-caption { color: white; font-size: 1.5rem; margin-top: 15px; }
+        .close-btn { position: absolute; top: 20px; right: 40px; color: white; font-size: 50px; cursor: pointer; font-weight: bold; }
+        .close-btn:hover { color: #ccc; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>
-            <!-- ใส่โลโก้หน้าและหลัง -->
             <img src="favicon.ico" class="logo-img" alt="Logo"> 
             SuthepW13 Cactus by Xiaomi 17 Ultra 
             <img src="favicon.ico" class="logo-img" alt="Logo">
         </h1>
-        <p class="subtitle">ภาพแคคตัสคมชัดพิเศษ (รูปที่ 498 - 514)</p>
+        <p class="subtitle" id="subtitle-count">ภาพแคคตัสคมชัดพิเศษ (กำลังโหลด...)</p>
         <a href="index.html" class="btn-back">⬅ กลับหน้าหลัก</a>
     </header>
 
-    <div class="container" id="gallery-container">
-        <!-- โค้ดจะดึงรูปลงมาตรงนี้ -->
-    </div>
+    <div class="container" id="gallery-container"></div>
 
-    <!-- กล่องสำหรับขยายรูปโชว์กลางจอ -->
     <div id="lightbox" onclick="closeLightbox()">
         <span class="close-btn">&times;</span>
         <img id="lightbox-img" src="" alt="ขยายรูป">
@@ -154,11 +47,13 @@
     </div>
 
     <script>
-        const galleryContainer = document.getElementById('gallery-container');
+        // ==========================================
+        // จำนวนรูปล่าสุดในโฟลเดอร์ xiaomi
+        // ==========================================
+        const totalImages = 400; // <--- ตั้งไว้ที่ 400 รูปตามที่สหายมีเลยครับ
         
-        // กำหนดให้เริ่มดึงที่รูป 498 ถึง 514
-        const startImage = 498;
-        const endImage = 514; 
+        document.getElementById('subtitle-count').innerText = `ภาพแคคตัสคมชัดพิเศษ รวมทั้งหมด ${totalImages} รูป`;
+        const galleryContainer = document.getElementById('gallery-container');
         
         window.openLightbox = function(imageSrc, imageNumber) {
             document.getElementById('lightbox').style.display = 'flex';
@@ -170,20 +65,18 @@
             document.getElementById('lightbox').style.display = 'none';
         };
 
-        // ลูปดึงรูปเฉพาะช่วง 498-514
-        for (let i = startImage; i <= endImage; i++) {
+        for (let i = 1; i <= totalImages; i++) {
             const card = document.createElement('div');
             card.className = 'card';
             
-            const imagePath = `gallery/cactus (${i}).jpg`;
+            // ตรงนี้เปลี่ยนให้ไปดึงจากโฟลเดอร์ xiaomi และใช้ชื่อ xm แล้วครับ
+            const imagePath = `xiaomi/xm (${i}).jpg`;
 
-            card.onclick = function() {
-                openLightbox(imagePath, i);
-            };
+            card.onclick = function() { openLightbox(imagePath, i); };
 
             const img = document.createElement('img');
             img.src = imagePath;
-            img.alt = `Xiaomi Cactus รูปที่ ${i}`;
+            img.alt = `Xiaomi รูปที่ ${i}`;
             img.loading = 'lazy'; 
 
             const label = document.createElement('div');
@@ -195,6 +88,5 @@
             galleryContainer.appendChild(card);
         }
     </script>
-
 </body>
 </html>
