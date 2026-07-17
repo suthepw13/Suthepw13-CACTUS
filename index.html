@@ -2,7 +2,6 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <!-- ใช้ logo.jpg แทนไฟล์ที่ยาวๆ เพื่อป้องกัน Error -->
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <title>SuthepW13 Cactus</title>
     <style>
@@ -11,7 +10,14 @@
         .header-icon { height: 40px; border-radius: 50%; }
         h1 { margin: 0; font-size: 2em; }
         
-        .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto 40px auto; }
+        /* ปรับปรุงตรงนี้: เปลี่ยนจาก 3 คอลัมน์ตายตัว เป็น auto-fit เพื่อรองรับ 4 กล่องให้สวยงาม */
+        .container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 20px; 
+            max-width: 1100px; 
+            margin: 0 auto 40px auto; 
+        }
         
         .card { background: #fff8e1; padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
         
@@ -35,7 +41,6 @@
 </div>
 
 <div class="container">
-    <!-- กล่อง 1 -->
     <div class="card">
         <img src="20260702_194152_2301.jpg" class="card-img-top" alt="Xiaomi Gallery">
         <h3>Cactus Gallery</h3>
@@ -43,7 +48,6 @@
         <a href="xiaomi-gallery.html" class="btn">Enter Gallery →</a>
     </div>
 
-    <!-- กล่อง 2 -->
     <div class="card">
         <img src="20260702_194059_9605.jpg" class="card-img-top" alt="General Gallery">
         <h3>Cactus Gallery</h3>
@@ -51,11 +55,18 @@
         <a href="gallery.html" class="btn">Enter Gallery →</a>
     </div>
 
-    <!-- กล่อง 3: ปฏิทิน -->
     <div class="card">
         <img src="calendar_cover.jpg" class="card-img-top" alt="Calendar Cover">
         <h3>ปฏิทินแคคตัส</h3>
+        <p class="photo-count">📅 ปฏิทินปีปัจจุบัน</p>
         <a href="calendar.html" class="btn">เปิดปฏิทิน →</a>
+    </div>
+
+    <div class="card">
+        <img src="20260702_194152_2301.jpg" class="card-img-top" alt="Cactus Video Cover">
+        <h3>วิดีโอดอกยิมโนบาน</h3>
+        <p class="photo-count">🎥 พัฒนาการดอกยิมโนฯ 2021</p>
+        <a href="video.html" class="btn">เปิดชมวิดีโอ →</a>
     </div>
 </div>
 
