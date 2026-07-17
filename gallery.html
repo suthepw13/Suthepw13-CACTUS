@@ -3,114 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuthepW13 Cactus - Gallery</title>
+    <title>Cactus Gallery Past</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fcfbf7; margin: 0; padding: 20px; color: #333; }
-        header { text-align: center; margin-bottom: 40px; margin-top: 20px; }
-        .logo-img { width: 60px; height: 60px; vertical-align: middle; margin: 0 15px; border-radius: 50%; }
-        h1 { color: #2e7d32; font-size: 2.2rem; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
-        .subtitle { font-size: 1.1rem; color: #555; margin-bottom: 25px; }
-        .btn-back { display: inline-block; padding: 10px 25px; background-color: #2e7d32; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.15); }
-        .btn-back:hover { background-color: #1b5e20; transform: translateY(-2px); }
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 10px; }
-        .card { background: #fff8e1; padding: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center; transition: transform 0.2s; cursor: pointer; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
-        .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; background-color: #eaeaea; }
-        .photo-count { color: #d32f2f; font-size: 1em; font-weight: bold; margin-top: 5px; }
-
-        /* ระบบขยายรูป */
-        #lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; flex-direction: column; }
-        #lightbox img { max-width: 90%; max-height: 85%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        #lightbox-caption { color: white; font-size: 1.5rem; margin-top: 15px; }
-        
-        .close-btn { position: absolute; top: 20px; right: 40px; color: white; font-size: 50px; cursor: pointer; font-weight: bold; user-select: none; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; cursor: pointer; font-weight: bold; user-select: none; padding: 20px; }
-        .nav-btn:hover, .close-btn:hover { color: #ccc; }
-        .left-btn { left: 10px; }
-        .right-btn { right: 10px; }
+        /* สไตล์เดียวกับด้านบน ให้ก๊อปปี้ไปวางได้เลยครับ */
+        body { font-family: sans-serif; background-color: #fcfbf7; margin: 0; padding: 20px; color: #333; }
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: #fff8e1; padding: 10px; border-radius: 10px; cursor: pointer; text-align: center; }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+        #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        #lightbox img { max-width: 90%; max-height: 80%; border: 5px solid white; }
+        .nav-btn { position: absolute; top: 50%; color: white; font-size: 50px; cursor: pointer; padding: 20px; user-select: none; }
+        .left-btn { left: 20px; }
+        .right-btn { right: 20px; }
+        .close-btn { position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
     </style>
 </head>
 <body>
+    <div class="container" id="gallery"></div>
 
-    <header>
-        <h1>
-            <img src="favicon.ico" class="logo-img" alt="Logo"> 
-            SuthepW13 Cactus Gallery 
-            <img src="favicon.ico" class="logo-img" alt="Logo">
-        </h1>
-        <p class="subtitle" id="subtitle-count">ภาพแคคตัสในอดีต (กำลังโหลด...)</p>
-        <a href="index.html" class="btn-back">⬅ กลับหน้าหลัก</a>
-    </header>
-
-    <div class="container" id="gallery-container"></div>
-
-    <div id="lightbox" onclick="closeLightbox(event)">
-        <span class="close-btn" onclick="closeLightbox(event)">&times;</span>
+    <div id="lightbox">
+        <span class="close-btn" onclick="document.getElementById('lightbox').style.display='none'">&times;</span>
         <span class="nav-btn left-btn" onclick="changeImage(-1)">&#10094;</span>
-        <img id="lightbox-img" src="" alt="ขยายรูป">
+        <img id="lightbox-img" src="">
         <span class="nav-btn right-btn" onclick="changeImage(1)">&#10095;</span>
-        <div id="lightbox-caption"></div>
     </div>
 
     <script>
-        const totalImages = 497; // จำนวนรูปในอดีตที่เหลืออยู่
-        let currentImageIndex = 1; 
-        
-        document.getElementById('subtitle-count').innerText = `ภาพแคคตัสในอดีต รวมทั้งหมด ${totalImages} รูป`;
-        const galleryContainer = document.getElementById('gallery-container');
-        
-        window.openLightbox = function(imageNumber) {
-            currentImageIndex = imageNumber;
-            updateLightboxImage();
+        const total = 497; // จำนวนรูปในอดีต
+        const container = document.getElementById('gallery');
+        let current = 1;
+
+        for (let i = 1; i <= total; i++) {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `<img src="gallery/cactus (${i}).jpg"><div>รูปที่ ${i}</div>`;
+            div.onclick = () => { current = i; show(i); };
+            container.appendChild(div);
+        }
+
+        function show(i) {
+            document.getElementById('lightbox-img').src = `gallery/cactus (${i}).jpg`;
             document.getElementById('lightbox').style.display = 'flex';
-        };
+        }
 
-        window.closeLightbox = function(event) {
-            if (event.target.id === 'lightbox' || event.target.className.includes('close-btn')) {
-                document.getElementById('lightbox').style.display = 'none';
-            }
-        };
+        function changeImage(dir) {
+            current += dir;
+            if (current < 1) current = total;
+            if (current > total) current = 1;
+            show(current);
+        }
 
-        window.changeImage = function(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 1) currentImageIndex = totalImages;
-            if (currentImageIndex > totalImages) currentImageIndex = 1;
-            updateLightboxImage();
-        };
-
-        window.updateLightboxImage = function() {
-            const imagePath = `gallery/cactus (${currentImageIndex}).jpg`;
-            document.getElementById('lightbox-img').src = imagePath;
-            document.getElementById('lightbox-caption').innerText = 'รูปที่ ' + currentImageIndex;
-        };
-
-        document.addEventListener('keydown', function(event) {
-            if (document.getElementById('lightbox').style.display === 'flex') {
-                if (event.key === 'ArrowLeft') changeImage(-1);
-                else if (event.key === 'ArrowRight') changeImage(1);
-                else if (event.key === 'Escape') document.getElementById('lightbox').style.display = 'none';
+        document.addEventListener('keydown', (e) => {
+            if(document.getElementById('lightbox').style.display === 'flex') {
+                if(e.key === 'ArrowLeft') changeImage(-1);
+                if(e.key === 'ArrowRight') changeImage(1);
+                if(e.key === 'Escape') document.getElementById('lightbox').style.display = 'none';
             }
         });
-
-        for (let i = 1; i <= totalImages; i++) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            const imagePath = `gallery/cactus (${i}).jpg`;
-            card.onclick = function() { openLightbox(i); };
-
-            const img = document.createElement('img');
-            img.src = imagePath;
-            img.alt = `Cactus รูปที่ ${i}`;
-            img.loading = 'lazy'; 
-
-            const label = document.createElement('div');
-            label.className = 'photo-count';
-            label.innerText = `รูปที่ ${i}`;
-
-            card.appendChild(img);
-            card.appendChild(label);
-            galleryContainer.appendChild(card);
-        }
     </script>
 </body>
 </html>
