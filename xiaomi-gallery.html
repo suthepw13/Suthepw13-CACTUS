@@ -7,11 +7,16 @@
     <style>
         body { font-family: sans-serif; background-color: #fcfbf7; margin: 0; padding: 20px; color: #333; }
         .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .card { background: #fff8e1; padding: 10px; border-radius: 10px; cursor: pointer; text-align: center; }
+        .card { background: #fff8e1; padding: 10px; border-radius: 10px; cursor: pointer; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+        
+        /* สไตล์สำหรับชื่อพันธุ์และคำว่ารูปที่... */
+        .name-text { color: #2e7d32; font-weight: bold; margin-top: 10px; font-size: 1.1rem; }
+        .num-text { color: #666; font-size: 0.9rem; margin-top: 3px; }
+
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); flex-direction: column; justify-content: center; align-items: center; }
         #lightbox img { max-width: 90%; max-height: 70%; border: 5px solid white; }
-        #lightbox-caption { color: white; font-size: 1.5rem; margin-top: 15px; }
+        #lightbox-caption { color: white; text-align: center; margin-top: 15px; }
         .nav-btn { position: absolute; top: 50%; color: white; font-size: 50px; cursor: pointer; padding: 20px; user-select: none; }
         .left-btn { left: 20px; }
         .right-btn { right: 20px; }
@@ -29,25 +34,51 @@
     </div>
 
     <script>
-        // สมมติว่ามี 397 รูป (อ้างอิงจากมุมขวาในรูปที่สหายส่งมา) 
-        // สหายแก้เลขตรงนี้ให้ตรงกับจำนวนรูปไฟล์สุดท้ายได้เลยนะครับ
-        const total = 397; 
+        const total = 397; // จำนวนรูปรวม
         const container = document.getElementById('gallery');
         let current = 1;
+
+        // 📝 สมุดทะเบียนชื่อแคคตัส
+        // รูปไหนยังไม่มีชื่อ ก็แค่ปล่อยผ่านไปครับ ระบบจะโชว์แค่ "รูปที่..." ให้เอง
+        const cactusNames = {
+            1: "Gymnocalycium (ยิมโน)",
+            2: "Astrophytum (แอสโตร)",
+            8: "Echinopsis (อิชินอปซิส)",
+            // สหายสามารถเพิ่มเลขรูป และชื่อลงมาได้เรื่อยๆ เลยครับ
+        };
 
         for (let i = 1; i <= total; i++) {
             const div = document.createElement('div');
             div.className = 'card';
-            // จุดที่แก้: เปลี่ยนจาก xm (${i}) เป็น xm(${i}) แบบไม่มีเว้นวรรค
-            div.innerHTML = `<img src="xiaomi/xm(${i}).jpg"><div>รูปที่ ${i}</div>`;
+            
+            // เช็คว่ารูปนี้ถูกตั้งชื่อไว้ในสมุดทะเบียนหรือเปล่า
+            let nameHtml = '';
+            if (cactusNames[i]) {
+                nameHtml = `<div class="name-text">${cactusNames[i]}</div>`;
+            }
+            
+            // ประกอบร่าง: รูปภาพ + ชื่อ(ถ้ามี) + คำว่า รูปที่... (มีเสมอ)
+            div.innerHTML = `
+                <img src="xiaomi/xm(${i}).jpg">
+                ${nameHtml}
+                <div class="num-text">รูปที่ ${i}</div>
+            `;
+            
             div.onclick = () => { current = i; show(i); };
             container.appendChild(div);
         }
 
         function show(i) {
-            // จุดที่แก้: เปลี่ยนเป็น xm(${i}) แบบไม่มีเว้นวรรค
             document.getElementById('lightbox-img').src = `xiaomi/xm(${i}).jpg`;
-            document.getElementById('lightbox-caption').innerText = 'รูปที่ ' + i;
+            
+            // จัดการข้อความตอนขยายรูปใหญ่ (จอดำ)
+            let captionHtml = '';
+            if (cactusNames[i]) {
+                captionHtml = `<div style="color: #81c784; font-weight: bold; font-size: 1.5rem;">${cactusNames[i]}</div>`;
+            }
+            captionHtml += `<div style="font-size: 1rem; color: #ccc; margin-top: 5px;">รูปที่ ${i}</div>`;
+            
+            document.getElementById('lightbox-caption').innerHTML = captionHtml;
             document.getElementById('lightbox').style.display = 'flex';
         }
 
