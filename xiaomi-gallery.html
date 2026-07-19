@@ -146,8 +146,8 @@
             const div = document.createElement('div');
             div.className = 'card';
             
-            // เลือกว่าจะโชว์ชื่อแคคตัส หรือโชว์แค่คำว่า "รูปที่ x"
-            const displayName = cactusNames[i] ? cactusNames[i] : `รูปที่ ${i}`;
+            // 💡 แก้ไขตรงนี้: ให้แสดง "รูปที่ X : ชื่อแคคตัส"
+            const displayName = cactusNames[i] ? `รูปที่ ${i} : ${cactusNames[i]}` : `รูปที่ ${i}`;
             
             div.innerHTML = `<img src="xiaomi/xm(${i}).jpg"><div style="margin-top: 8px; font-weight: bold;">${displayName}</div>`;
             div.onclick = () => { current = i; show(i); };
@@ -157,11 +157,10 @@
         function show(i) {
             document.getElementById('lightbox-img').src = `xiaomi/xm(${i}).jpg`;
             
-            // ตรวจสอบว่ามีข้อมูลชื่อและคำบรรยายหรือไม่
-            const name = cactusNames[i] ? cactusNames[i] : `รูปที่ ${i}`;
+            // 💡 แก้ไขตรงนี้: ให้หน้าจอขยายแสดง "รูปที่ X : ชื่อแคคตัส" ด้วย
+            const name = cactusNames[i] ? `รูปที่ ${i} : ${cactusNames[i]}` : `รูปที่ ${i}`;
             const desc = cactusDesc[i] ? `<div class="desc-text">${cactusDesc[i]}</div>` : '';
             
-            // แสดงผลในหน้าจอขยาย
             document.getElementById('lightbox-caption').innerHTML = `<strong>${name}</strong>${desc}`;
             document.getElementById('lightbox').style.display = 'flex';
         }
