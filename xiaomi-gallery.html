@@ -452,13 +452,13 @@
             
             const displayName = cactusNames[i] ? `รูปที่ ${i} : ${cactusNames[i]}` : `รูปที่ ${i}`;
             
-            div.innerHTML = `<img src="xm(${i}).jpg" onerror="this.src='https://via.placeholder.com/220x200?text=Cactus+${i}'"><div style="margin-top: 8px; font-weight: bold; font-size: 13px;">${displayName}</div>`;
+            div.innerHTML = `<img src="xiaomo/xm(${i}).jpg" onerror="this.src='https://via.placeholder.com/220x200?text=Cactus+${i}'"><div style="margin-top: 8px; font-weight: bold; font-size: 13px;">${displayName}</div>`;
             div.onclick = () => { current = i; show(i); };
             container.appendChild(div);
         }
 
         function show(i) {
-            document.getElementById('lightbox-img').src = `xm(${i}).jpg`;
+            document.getElementById('lightbox-img').src = `xiaomi/xm(${i}).jpg`;
             
             const name = cactusNames[i] ? `รูปที่ ${i} : ${cactusNames[i]}` : `รูปที่ ${i}`;
             const desc = cactusDesc[i] ? `<div class="desc-text">${cactusDesc[i]}</div>` : '';
