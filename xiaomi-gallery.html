@@ -753,7 +753,7 @@
             
             const displayName = cactusNames[i] ? `รูปที่ ${i} : ${cactusNames[i]}` : `รูปที่ ${i}`;
             
-            div.innerHTML = `<img src="xiaomi/xm(${i}).jpg"loading="lazy" onerror="this.src='https://via.placeholder.com/220x200?text=Cactus+${i}'"><div style="margin-top: 8px; font-weight: bold; font-size: 13px;">${displayName}</div>`;
+            div.innerHTML = `<img src="xiaomi/xm(${i}).jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/220x200?text=Cactus+${i}'"><div style="margin-top: 8px; font-weight: bold; font-size: 13px;">${displayName}</div>`;
             div.onclick = () => { current = i; show(i); };
             container.appendChild(div);
         }
