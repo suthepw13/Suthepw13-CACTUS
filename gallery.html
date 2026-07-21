@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuthepW13 Cactus - Gallery</title>
+    <title>SuthepW13 Cactus - Gallery (Xiaomi 13T Collection)</title>
     <style>
         body { font-family: sans-serif; background-color: #fcfbf7; margin: 0; padding: 20px; color: #333; }
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .card { background: #fff8e1; padding: 10px; border-radius: 10px; cursor: pointer; text-align: center; }
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1400px; margin: 0 auto; }
+        .card { background: #fff8e1; padding: 10px; border-radius: 10px; cursor: pointer; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-4px); }
         .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); flex-direction: column; justify-content: center; align-items: center; }
-        #lightbox img { max-width: 90%; max-height: 70%; border: 5px solid white; }
-        #lightbox-caption { color: white; font-size: 1.5rem; margin-top: 15px; }
-        .nav-btn { position: absolute; top: 50%; color: white; font-size: 50px; cursor: pointer; padding: 20px; user-select: none; }
+        #lightbox img { max-width: 90%; max-height: 70vh; border: 5px solid white; object-fit: contain; border-radius: 6px; }
+        #lightbox-caption { color: white; font-size: 1.2rem; margin-top: 15px; text-align: center; line-height: 1.5; padding: 0 20px; }
+        .nav-btn { position: absolute; top: 50%; color: white; font-size: 50px; cursor: pointer; padding: 20px; user-select: none; transform: translateY(-50%); }
         .left-btn { left: 20px; }
         .right-btn { right: 20px; }
         .close-btn { position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
+        .desc-text { font-size: 1rem; color: #bbbbbb; margin-top: 5px; font-weight: normal; }
     </style>
 </head>
 <body>
+    <h1 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">SuthepW13 Cactus Collection (497 รูป)</h1>
     <div class="container" id="gallery"></div>
+
     <div id="lightbox">
         <span class="close-btn" onclick="document.getElementById('lightbox').style.display='none'">&times;</span>
         <span class="nav-btn left-btn" onclick="changeImage(-1)">&#10094;</span>
@@ -33,17 +37,75 @@
         const container = document.getElementById('gallery');
         let current = 1;
 
+        // 📝 สมุดทะเบียนชื่อสายพันธุ์ (1-20 วิเคราะห์จากรูปจริง)
+        const cactusNames = {
+            1: "Astrophytum (แอสโตรฟิตัม)",
+            2: "Gymnocalycium (ยิมโนหนามโค้ง)",
+            3: "Gymnocalycium (ยิมโนดอกขาว)",
+            4: "Gymnocalycium (ยิมโน)",
+            5: "Echinopsis (อิชินอปซิส)",
+            6: "Echinopsis (อิชินอปซิส)",
+            7: "Echinopsis (อิชินอปซิสดอกขาว)",
+            8: "Echinopsis (อิชินอปซิสดอกขาว)",
+            9: "Echinopsis (อิชินอปซิสดอกขาว)",
+            10: "Echinopsis (อิชินอปซิส)",
+            11: "Echinopsis (อิชินอปซิส)",
+            12: "Lobivia (โลบิเวียดอกสีแดง)",
+            13: "Lobivia (โลบิเวียดอกสีแดง)",
+            14: "Lobivia (โลบิเวียดอกสีส้ม)",
+            15: "Echinopsis (อิชินอปซิสช่อส้ม)",
+            16: "Echinopsis (อิชินอปซิสดอกส้ม)",
+            17: "Echinopsis (อิชินอปซิสช่อส้ม)",
+            18: "Echinopsis (อิชินอปซิสดอกส้ม)",
+            19: "Echinopsis (อิชินอปซิสช่อส้ม)",
+            20: "Gymnocalycium (ยิมโนขาวสามดอก)"
+        };
+
+        // 📝 สมุดทะเบียนคำอธิบาย (1-20 วิเคราะห์จากรูปจริง)
+        const cactusDesc = {
+            1: "ถ่ายเมื่อ 27 พฤษภาคม 2024 - ดอกสีเหลืองนวลบานสะพรั่งกลางแดด ตัดกับลำต้นสีเขียวเข้ม",
+            2: "ดอกสีขาวครีมบานคู่บนต้นยิมโนที่มีเอกลักษณ์เรื่องหนามโค้งมนสวยงาม",
+            3: "มุมมองจากด้านบนโชว์การบานพร้อมกันของยิมโนสองต้นในกระถางเดียว",
+            4: "ดอกยิมโนกลีบซ้อนสีขาวสะอาดตา แย้มบานรับแสงยามบ่ายอย่างเต็มที่",
+            5: "เตรียมตัวบานยามค่ำคืน โชว์ตาดอกจำนวนมากที่พร้อมจะเบ่งบาน",
+            6: "ลำต้นทรงกระบอกชูตาดอกยาวตามเอกลักษณ์ของสายพันธุ์อิชินอปซิส",
+            7: "ราชินีแห่งค่ำคืน - ดอกสีขาวขนาดใหญ่บานเต็มที่ส่งกลิ่นหอมในความมืด",
+            8: "ถ่ายเมื่อ 28 พฤษภาคม 2024 - ความงดงามของดอกอิชินอปซิสที่บานสะพรั่งข้ามคืน",
+            9: "ซูมใกล้ให้เห็นรายละเอียดเกสรและกลีบดอกขาวบริสุทธิ์ที่เรียงซ้อนกันอย่างมีระเบียบ",
+            10: "ภาพรวมต้นอิชินอปซิสที่ชูดอกเดี่ยวออกมาจากยอดลำต้นอย่างสง่างาม",
+            11: "ความสดใสยามเช้าพร้อมผึ้งตัวจิ๋วที่แวะมาทักทายใจกลางดอก",
+            12: "ถ่ายเมื่อ 29 พฤษภาคม 2024 - โลบิเวียดอกสีส้มแดงสดใส สร้างสีสันโดดเด่นในสวน",
+            13: "ความสดของสีดอกโลบิเวียที่ตัดกับผิวดินเผาและฉากหลังสีเทา",
+            14: "คู่ดอกสีส้มทองบนลำต้นขนาดเล็กแต่ขยันให้ดอก",
+            15: "ภาพรวมที่สุดของความอลังการ - อิชินอปซิสที่บานช่อดอกสีส้มพร้อมกันนับสิบดอก",
+            16: "เจาะจงความงามของดอกสีส้มที่บานเต็มที่เห็นรายละเอียดพริ้วไหวของกลีบ",
+            17: "มุมมอง Top View โชว์มงกุฎดอกไม้สีส้มทองที่ล้อมรอบลำต้น",
+            18: "วางรับแดดริมระเบียง โชว์พุ่มดอกไม้ที่ดูมีชีวิตชีวาและแข็งแรง",
+            19: "อีกหนึ่งมุมมองความประทับใจของช่อดอกสีส้มที่บานรับแสงเช้า",
+            20: "ยิมโนดอกขาวครีมสามดอกบานพร้อมกันอย่างสมมาตรเหนือลำต้นสีเข้ม"
+        };
+
         for (let i = 1; i <= total; i++) {
             const div = document.createElement('div');
             div.className = 'card';
-            div.innerHTML = `<img src="gallery/cactus (${i}).jpg"><div>รูปที่ ${i}</div>`;
+            
+            const nameLabel = cactusNames[i] ? `รูปที่ ${i}: ${cactusNames[i]}` : `รูปที่ ${i}`;
+            
+            div.innerHTML = `
+                <img src="gallery/cactus (${i}).jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/220x200?text=Cactus+${i}'">
+                <div style="margin-top: 8px; font-weight: bold; font-size: 13px;">${nameLabel}</div>
+            `;
             div.onclick = () => { current = i; show(i); };
             container.appendChild(div);
         }
 
         function show(i) {
             document.getElementById('lightbox-img').src = `gallery/cactus (${i}).jpg`;
-            document.getElementById('lightbox-caption').innerText = 'รูปที่ ' + i;
+            
+            const name = cactusNames[i] ? `รูปที่ ${i}: ${cactusNames[i]}` : `รูปที่ ${i}`;
+            const desc = cactusDesc[i] ? `<div class="desc-text">${cactusDesc[i]}</div>` : '';
+            
+            document.getElementById('lightbox-caption').innerHTML = `<strong>${name}</strong>${desc}`;
             document.getElementById('lightbox').style.display = 'flex';
         }
 
