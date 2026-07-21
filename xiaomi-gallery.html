@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Xiaomi 17 Ultra - Cactus Gallery (รูปที่ 1 - 397)</h1>
+    <h1 id="gallery-title" style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Xiaomi 17 Ultra - Cactus Gallery</h1>
     <div class="container" id="gallery"></div>
 
     <div id="lightbox">
@@ -835,8 +835,15 @@
             397: "ถ่ายเมื่อ 2026.07.16 15:06 น. - มุมมอง Top View เห็นการเรียงตัวของชั้นกลีบดอกสีชมพูนู้ดที่มีเสน่ห์ ตัดกับสีลำต้นเข้มได้อย่างลงตัว"
         };
 
-        const startIdx = 1;
-        const endIdx = 397; // <--- ตั้งค่าให้อ่านรูปถึง 397 เรียบร้อย
+      const startIdx = 1;
+        
+        // 🚀 ระบบจะค้นหาตัวเลขรหัสรูปภาพที่สูงที่สุดใน cactusNames ให้โดยอัตโนมัติ
+        const endIdx = Math.max(...Object.keys(cactusNames).map(Number)); 
+        
+        // 🚀 ระบบจะอัปเดตข้อความบนแท็บเบราว์เซอร์ และหัวข้อหน้าเว็บให้อัตโนมัติทันที
+        document.title = `Xiaomi 17 Ultra Gallery (รูปที่ ${startIdx} - ${endIdx})`;
+        document.getElementById('gallery-title').textContent = `Xiaomi 17 Ultra - Cactus Gallery (รูปที่ ${startIdx} - ${endIdx})`;
+        
         const container = document.getElementById('gallery');
         let current = startIdx;
 
