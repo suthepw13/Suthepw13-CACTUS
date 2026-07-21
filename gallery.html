@@ -975,6 +975,11 @@
             div.onclick = () => { current = i; show(i); };
             container.appendChild(div);
         }
+ const endBanner = document.createElement('div');
+        endBanner.style.cssText = "grid-column: 1 / -1; text-align: center; margin: 40px 0 20px 0; padding-top: 30px; border-top: 1px dashed #ccc; color: #7f8c8d; font-size: 1.1rem;";
+        endBanner.innerHTML = "✨ สิ้นสุดการนำเสนอคอลเลกชัน Xiaomi 13T (รวมทั้งสิ้น 497 รูปภาพ) ✨<br><small style='color: #bdc3c7; font-size: 0.85rem; display: block; margin-top: 8px;'>- ขอบคุณที่รับชม -</small>";
+        container.appendChild(endBanner);
+
 
         function show(i) {
             document.getElementById('lightbox-img').src = `gallery/cactus (${i}).jpg`;
