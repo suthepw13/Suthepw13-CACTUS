@@ -6,12 +6,7 @@
     <title>SuthepW13 Cactus Gallery (500 รูป)</title>
     <style>
         body { font-family: 'Sarabun', sans-serif; background: #f4f4f9; margin: 0; padding: 20px; }
-        
-        /* จัดแต่งหัวข้อ + โลโก้หัวท้าย */
-        .gallery-header { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px; }
-        .gallery-header h1 { margin: 0; color: #333; font-size: 28px; text-align: center; }
-        .header-logo { width: 35px; height: 35px; object-fit: contain; }
-
+        h1 { text-align: center; color: #333; margin-bottom: 20px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; }
         .gallery-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s; }
         .gallery-item:hover { transform: translateY(-5px); }
@@ -19,44 +14,22 @@
         .gallery-info { padding: 10px; text-align: center; font-size: 14px; color: #555; }
         .gallery-info .img-num { font-weight: bold; color: #007bff; display: block; margin-bottom: 3px; }
         
-        /* ป้ายข้อความสิ้นสุดการแสดงผลด้านล่างสุด */
-        .end-gallery-banner { text-align: center; margin: 35px auto 20px auto; padding: 15px 25px; background: #e2e8f0; border-radius: 30px; max-width: 500px; color: #475569; font-weight: bold; font-size: 16px; border: 2px dashed #94a3b8; }
-
         /* Lightbox Modal */
-        #lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; flex-direction: column; color: #fff; padding: 10px; box-sizing: border-box; }
-        #lightbox img { max-width: 92%; max-height: 82vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.8); object-fit: contain; }
-        #lightbox .desc { margin-top: 12px; font-size: 16px; text-align: center; max-width: 900px; padding: 6px 15px; line-height: 1.4; background: rgba(0,0,0,0.5); border-radius: 5px; }
-        #lightbox .close-btn { position: absolute; top: 15px; right: 25px; font-size: 40px; cursor: pointer; color: #fff; z-index: 1001; text-shadow: 0 2px 5px #000; }
-        
-        /* Navigation Arrows */
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); font-size: 45px; color: #fff; background: rgba(0,0,0,0.5); border: none; padding: 12px 18px; cursor: pointer; border-radius: 5px; user-select: none; transition: background 0.3s; z-index: 1001; }
-        .nav-btn:hover { background: rgba(0,0,0,0.85); }
-        .prev-btn { left: 15px; }
-        .next-btn { right: 15px; }
+        #lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; flex-direction: column; color: #fff; }
+        #lightbox img { max-width: 85%; max-height: 70vh; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        #lightbox .desc { margin-top: 15px; font-size: 16px; text-align: center; max-width: 800px; padding: 0 20px; line-height: 1.5; }
+        #lightbox .close-btn { position: absolute; top: 20px; right: 30px; font-size: 35px; cursor: pointer; color: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- โซนหัวข้อพร้อมโลโก้หัวท้าย -->
-    <div class="gallery-header">
-        <img src="logo.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
-        <h1 id="galleryTitle">SuthepW13 Cactus Gallery (500 รูป)</h1>
-        <img src="logo.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
-    </div>
-
+    <h1 id="galleryTitle">🌵 SuthepW13 Cactus Gallery (500 รูป) 🌵</h1>
     <div class="gallery-grid" id="galleryGrid"></div>
 
-    <!-- ข้อความแจ้งสิ้นสุดแกลเลอรีด้านล่างสุด -->
-    <div class="end-gallery-banner">
-        🌵 สิ้นสุดการแสดงผลแคคตัสแกลเลอรี (ครบ 500 รูป) 🌵
-    </div>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox">
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()">
         <span class="close-btn" onclick="closeLightbox()">&times;</span>
-        <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
         <img id="lightboxImg" src="" alt="Cactus Detail">
-        <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
         <div class="desc" id="lightboxDesc"></div>
     </div>
 
@@ -860,7 +833,7 @@
             291: "ถ่ายเมื่อ 08/07/2024 13:44 น. - ยิมโนออกดอกสีขาวนวลบานสะพรั่ง มีผึ้งตัวน้อยมาแวะตอมผสมเกสรยามบ่าย",
             292: "ถ่ายเมื่อ 08/07/2024 13:44 น. - ยิมโนออกดอกสีขาว 3 ดอกบานพร้อมกัน มีผึ้งหลายตัวมาตอมเกสรอย่างคึกคัก",
             293: "ถ่ายเมื่อ 08/07/2024 13:45 น. - ยิมโนออกดอกสีชมพูอ่อนระเรื่อ กลีบซ้อนสวยงามแปลกตากลางดงหนาม",
-            294: "ถ่ายเมื่อ 08/07/2024 13:46 น. - ยิมโนดอกสีขาวบานเดี่ยว มีผึ้งเกาะกลางดอก ท่ามกลางฉากหลังแคคตัสสีส้มสดใส",
+            294: "ถ่ายเมื่อ 08/08/2024 13:46 น. - ยิมโนดอกสีขาวบานเดี่ยว มีผึ้งเกาะกลางดอก ท่ามกลางฉากหลังแคคตัสสีส้มสดใส",
             295: "ถ่ายเมื่อ 08/07/2024 13:48 น. - ยิมโนออกดอกสีขาวนวลบานเดี่ยวบนยอดต้น สูงเด่นท่ามกลางฉากหลังหลากสี",
             296: "ถ่ายเมื่อ 09/07/2024 08:19 น. - ตาดอกตูมมีขนปุยสีน้ำตาลยาวของแคคตัสเลื้อย แทงช่อเด่นบนกระถาง",
             297: "ถ่ายเมื่อ 09/07/2024 15:02 น. - ซูมใกล้ดอกยิมโนสีขาวนวล เกสรสีเหลืองทองตรงกลางสมบูรณ์เด่นชัด",
@@ -1069,16 +1042,16 @@
             500: "ภาพประทับใจรวมแคคตัสบานสะพรั่งฉลองครบ 500 รูป"
         };
 
+        // ระบบดึงรูปภาพและแสดงผลแบบวนลูปอัตโนมัติ 1 - 500
         const totalImages = 500;
-        let currentImgIndex = 1;
         const grid = document.getElementById('galleryGrid');
 
-        // สร้างรายการรูปภาพ
         for (let i = 1; i <= totalImages; i++) {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             
             const name = cactusNames[i] || "Cactus";
+            const desc = cactusDesc[i] || `รูปที่ ${i}`;
             const imgPath = `gallery/cactus (${i}).jpg`;
 
             item.innerHTML = `
@@ -1089,46 +1062,20 @@
                 </div>
             `;
 
-            item.onclick = () => openLightbox(i);
+            item.onclick = () => openLightbox(imgPath, `<b>รูปที่ ${i}: ${name}</b><br>${desc}`);
             grid.appendChild(item);
         }
 
-        // ระบบ Lightbox + ปุ่มเลื่อนรูป
-        function openLightbox(index) {
-            currentImgIndex = index;
-            updateLightbox();
+        // ระบบ Lightbox แสดงรูปใหญ่
+        function openLightbox(src, desc) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxDesc').innerHTML = desc;
             document.getElementById('lightbox').style.display = 'flex';
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
         }
-
-        function changeImage(direction) {
-            currentImgIndex += direction;
-            if (currentImgIndex > totalImages) currentImgIndex = 1;
-            if (currentImgIndex < 1) currentImgIndex = totalImages;
-            updateLightbox();
-        }
-
-        function updateLightbox() {
-            const name = cactusNames[currentImgIndex] || "Cactus";
-            const desc = cactusDesc[currentImgIndex] || `รูปที่ ${currentImgIndex}`;
-            const imgPath = `gallery/cactus (${currentImgIndex}).jpg`;
-
-            document.getElementById('lightboxImg').src = imgPath;
-            document.getElementById('lightboxDesc').innerHTML = `<b>รูปที่ ${currentImgIndex}: ${name}</b><br>${desc}`;
-        }
-
-        // รองรับการกดปุ่มบนคีย์บอร์ด (Left, Right, ESC)
-        document.addEventListener('keydown', function(event) {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.style.display === 'flex') {
-                if (event.key === "ArrowLeft") changeImage(-1);
-                if (event.key === "ArrowRight") changeImage(1);
-                if (event.key === "Escape") closeLightbox();
-            }
-        });
     </script>
 </body>
 </html>
