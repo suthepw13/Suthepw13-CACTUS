@@ -22,7 +22,7 @@
 </head>
 <body>
 
-    <h1>SuthepW13 Cactus Gallery</h1>
+    <h1 id="galleryTitle">SuthepW13 Cactus Gallery</h1>
     <div class="gallery-grid" id="galleryGrid"></div>
 
     <!-- Lightbox -->
@@ -500,14 +500,14 @@
             463: "Combo (แคคตัสรวมหลายกระถาง)",
             464: "Combo (แคคตัสรวมหลายกระถาง)",
             465: "Combo (แคคตัสรวมหลายกระถาง)",
-            466: "Combo (แคคตัสรวม 4 มุมมอง)",
+            // 466 ถูกข้าม
             467: "Gymnocalycium (ยิมโน)",
             468: "Gymnocalycium (ยิมโน)",
             469: "Gymnocalycium (ยิมโน)",
             470: "Gymnocalycium (ยิมโน)"
         };
 
-        // สมุดทะเบียน: คำบรรยายและเกร็ดความรู้
+        // สมุดทะเบียน: คำบรรยายและเกร็ดความรู้ (ข้าม 466)
         const cactusDesc = {
             1: "มุมท็อป ยิมโนดอกสีขาวครีมอมชมพู 3 ดอก บานพร้อมกันดูสวยละมุนตา",
             2: "ถ่ายเมื่อ 27 พ.ค. 2024 12:08 น. - แอสโตรดอกสีเหลืองสดใส บานเดี่ยวรับแดดกลางลำต้น",
@@ -974,52 +974,11 @@
             463: "ถ่ายเมื่อ 22/09/2025 08:19 น. - มุมมองใกล้ชิดกลุ่มแคคตัสหลากสีสันสดใสรับแสงเช้า",
             464: "ถ่ายเมื่อ 22/09/2025 08:19 น. - ภาพรวมแคคตัสออกดอกหลากสี ทั้งชมพู ขาว และส้ม สดใสเต็มพื้นที่",
             465: "ถ่ายเมื่อ 22/09/2025 08:19 น. - กลุ่มแคคตัสออกดอกพร้อมกันหลายสายพันธุ์ สวยงามอลังการ",
-            466: "ภาพรวม 4 มุมมอง คัดสรรความงามของแคคตัสหลากหลายสายพันธุ์ ทั้งยิมโนดอกขาว และโลบิเวียสีส้มแดงสดใส",
             467: "ถ่ายเมื่อ 23/09/2025 13:31 น. - ยิมโนออกดอกสีครีมนวล กลีบซ้อนเรียงตัวสวยงามคมชัด",
             468: "ถ่ายเมื่อ 23/09/2025 13:31 น. - มุมท็อปยิมโนออกดอกสีขาวนวล บานสะพรั่งอยู่ในแก้วมัคสีขาวน่ารัก",
             469: "ถ่ายเมื่อ 23/09/2025 13:32 น. - ยิมโนทรงสวย ออกดอกสีขาวนวลบานเดี่ยวในแก้วเซรามิกสีขาว",
             470: "ถ่ายเมื่อ 23/09/2025 13:32 น. - ยิมโนด่างออกดอกสีขาวอมชมพูเรื่อๆ เกสรสีเหลืองทองเด่นชัดสวยงาม"
         };
-
-        // นับจำนวนภาพตามข้อมูลจริงที่มีใน cactusNames อัตโนมัติ
-        const totalImages = Object.keys(cactusNames).length;
-
-        // สร้าง Grid รูปภาพตามจำนวนที่มีจริง
-        const grid = document.getElementById('galleryGrid');
-        for (let i = 1; i <= totalImages; i++) {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.onclick = () => openLightbox(`cactus (${i}).jpg`, `รูปที่ ${i}: ${cactusNames[i] || `Cactus ${i}`}`, cactusDesc[i] || '');
-            
-            const img = document.createElement('img');
-            img.src = `cactus (${i}).jpg`;
-            img.alt = `Cactus ${i}`;
-            img.loading = 'lazy'; // เปิดใช้งานระบบ Lazy Loading ให้เว็บโหลดไว
-            
-            const info = document.createElement('div');
-            info.className = 'gallery-info';
-            info.innerHTML = `<span class="img-num">รูปที่ ${i}</span>${cactusNames[i] || `cactus (${i}).jpg`}`;
-            
-            item.appendChild(img);
-            item.appendChild(info);
-            grid.appendChild(item);
-        }
-
-        // ฟังก์ชันเปิด Lightbox ขยายรูป
-        function openLightbox(src, name, desc) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxDesc = document.getElementById('lightboxDesc');
-            
-            lightboxImg.src = src;
-            lightboxDesc.innerHTML = `<strong>${name}</strong><br>${desc}`;
-            lightbox.style.display = 'flex';
-        }
-
-        // ฟังก์ชันปิด Lightbox
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
     </script>
 </body>
 </html>
